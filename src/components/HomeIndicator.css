@@ -1,0 +1,21 @@
+.home-indicator {
+  height: 21px;
+  width: 375px;
+  position: relative;
+}
+
+.home-indicator-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 139px;
+  height: 5px;
+  background-color: #000000;
+  border-radius: 100px;
+}
+
+.home-indicator.dark .home-indicator-bar {
+  background-color: #ffffff;
+}
+

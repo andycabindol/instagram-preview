@@ -1,0 +1,169 @@
+import React, { useState } from 'react'
+import StatusBar from '../components/StatusBar'
+import HomeIndicator from '../components/HomeIndicator'
+import './Screen5AddCaption.css'
+
+function Screen5AddCaption({ onBack, onShare, images = [] }) {
+  const [caption, setCaption] = useState('')
+  return (
+    <div className="screen5-add-caption">
+      <StatusBar />
+      
+      {/* Navigation Bar */}
+      <div className="nav-bar">
+        <button className="back-button" onClick={onBack}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="#0c1014" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
+        <p className="nav-title">New post</p>
+      </div>
+
+      {/* Content */}
+      <div className="content-section">
+        {/* Images Preview */}
+        <div className="images-preview">
+          {images.length > 0 ? (
+            images.map((imgSrc, index) => (
+              <div key={index} className="preview-image">
+                <img src={imgSrc} alt={`Post ${index + 1}`} />
+              </div>
+            ))
+          ) : (
+            // Fallback if no images are passed
+            <>
+              <div className="preview-image">
+                <img src="http://localhost:3845/assets/d58c09f5cf9a359f45487f6b73532da8ccff5c91.png" alt="Post 1" />
+              </div>
+              <div className="preview-image">
+                <img src="http://localhost:3845/assets/d58c09f5cf9a359f45487f6b73532da8ccff5c91.png" alt="Post 2" />
+                <img src="http://localhost:3845/assets/5106d463d5f468766199540286c27f4867aaa522.png" alt="Post 2 overlay" className="overlay-image" />
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Caption Section */}
+        <div className="caption-section">
+          <textarea 
+            className="caption-input" 
+            placeholder="Add a caption..."
+            rows={4}
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
+          />
+          <div className="caption-buttons">
+            <button className="caption-button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="5" r="1.5" fill="#0c1014"/>
+                <circle cx="12" cy="12" r="1.5" fill="#0c1014"/>
+                <circle cx="12" cy="19" r="1.5" fill="#0c1014"/>
+              </svg>
+              <span>Poll</span>
+            </button>
+            <button className="caption-button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#0c1014" strokeWidth="2" fill="none"/>
+              </svg>
+              <span>Prompt</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Options List */}
+        <div className="options-list">
+          <div className="option-item">
+            <div className="option-left">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18V5l12-2v13" stroke="#0c1014" strokeWidth="2" fill="none"/>
+                <circle cx="6" cy="18" r="3" stroke="#0c1014" strokeWidth="2" fill="none"/>
+                <circle cx="18" cy="16" r="3" stroke="#0c1014" strokeWidth="2" fill="none"/>
+              </svg>
+              <span>Add music</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="chevron">
+              <path d="M9 18l6-6-6-6" stroke="#6f7680" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="option-item">
+            <div className="option-left">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#0c1014" strokeWidth="2" fill="none"/>
+                <circle cx="9" cy="7" r="4" stroke="#0c1014" strokeWidth="2" fill="none"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#0c1014" strokeWidth="2" fill="none"/>
+              </svg>
+              <span>Tag people</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="chevron">
+              <path d="M9 18l6-6-6-6" stroke="#6f7680" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="option-item">
+            <div className="option-left">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="#0c1014" strokeWidth="2" fill="none"/>
+                <circle cx="12" cy="10" r="3" stroke="#0c1014" strokeWidth="2" fill="none"/>
+              </svg>
+              <span>Add location</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="chevron">
+              <path d="M9 18l6-6-6-6" stroke="#6f7680" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="divider"></div>
+          <div className="option-item">
+            <div className="option-left">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#0c1014" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>Audience</span>
+            </div>
+            <div className="option-right">
+              <span className="option-value">Audience</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="chevron">
+                <path d="M9 18l6-6-6-6" stroke="#6f7680" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div className="option-item">
+            <div className="option-left">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#0c1014" strokeWidth="2" fill="none"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#0c1014" strokeWidth="2" fill="none"/>
+              </svg>
+              <span>Also share on...</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="chevron">
+              <path d="M9 18l6-6-6-6" stroke="#6f7680" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <div className="divider"></div>
+          <div className="option-item">
+            <div className="option-left">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="5" r="1.5" fill="#0c1014"/>
+                <circle cx="12" cy="12" r="1.5" fill="#0c1014"/>
+                <circle cx="12" cy="19" r="1.5" fill="#0c1014"/>
+              </svg>
+              <span>More options</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="chevron">
+              <path d="M9 18l6-6-6-6" stroke="#6f7680" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Toolbar */}
+      <div className="bottom-toolbar">
+        <button className="share-button" onClick={() => onShare(images, caption)}>
+          <span>Share</span>
+        </button>
+        <HomeIndicator />
+      </div>
+    </div>
+  )
+}
+
+export default Screen5AddCaption
+

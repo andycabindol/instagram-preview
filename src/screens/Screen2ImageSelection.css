@@ -1,0 +1,235 @@
+.screen2-image-selection {
+  background-color: #0c1014;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: 375px;
+  min-height: 100vh;
+}
+
+.nav-bar-top {
+  background-color: #0c1014;
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  width: 375px;
+  position: relative;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.nav-title {
+  position: absolute;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: normal;
+  color: #ffffff;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.next-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.next-button span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: normal;
+  color: #8593ff;
+  text-align: center;
+}
+
+.picture-preview {
+  width: 375px;
+  height: 375px;
+  position: relative;
+  overflow: hidden;
+}
+
+.picture-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav-bar-bottom {
+  background-color: #0c1014;
+  display: flex;
+  height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  width: 375px;
+}
+
+.recents-section {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+}
+
+.recents-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: normal;
+  color: #ffffff;
+  text-align: center;
+}
+
+.chevron-right {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.gallery-button {
+  background-color: #212327;
+  border: 2px solid #212327;
+  border-radius: 100px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.gallery-button:hover {
+  background-color: #2a2d32;
+  border-color: #2a2d32;
+}
+
+.gallery-button.active {
+  background-color: #8593ff;
+  border-color: #8593ff;
+  box-shadow: 0 0 8px rgba(133, 147, 255, 0.5);
+}
+
+.gallery-button.active:hover {
+  background-color: #9ba5ff;
+  border-color: #9ba5ff;
+}
+
+.gallery-button svg {
+  stroke: #f7f9f9;
+  transition: stroke 0.2s ease-in-out;
+}
+
+.gallery-button.active svg {
+  stroke: #ffffff;
+}
+
+.image-grid {
+  background-color: #0c1014;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  height: 275px;
+  align-items: flex-start;
+  overflow-y: auto;
+  padding: 0;
+  width: 375px;
+}
+
+.camera-tile {
+  background-color: #1e1e1e;
+  width: calc((375px - 6px) / 4);
+  height: calc((375px - 6px) / 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.image-tile {
+  width: calc((375px - 6px) / 4);
+  height: calc((375px - 6px) / 4);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.image-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-tile .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.image-tile .overlay-white {
+  background: rgba(255, 255, 255, 0.6) !important;
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.image-tile .overlay-black {
+  background: rgba(0, 0, 0, 0.6) !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.selection-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #000000;
+  z-index: 2;
+}
+
+.empty-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ffffff;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  z-index: 2;
+}
+

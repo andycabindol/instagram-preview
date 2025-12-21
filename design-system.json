@@ -1,0 +1,116 @@
+{
+  "colors": {
+    "background": {
+      "default": "#ffffff",
+      "defaultInverted": "#0c1014",
+      "subtler": "#f3f4f6",
+      "interactive": "#8593ff",
+      "black": "#000000",
+      "notification": "#ff0034",
+      "postButton": "#212223",
+      "camera": "#1e1e1e"
+    },
+    "text": {
+      "default": "#0c1014",
+      "defaultInverted": "#ffffff",
+      "subtle": "#6f7680",
+      "link": "#8593ff",
+      "translucent": "rgba(255,255,255,0.7)"
+    },
+    "icons": {
+      "default": "#0c1014",
+      "defaultInverted": "#f7f9f9",
+      "white": "#ffffff",
+      "link": "#4a5df9",
+      "emphasized": "#ff0034",
+      "verified": "#0098fd",
+      "subtler": "#25292e"
+    },
+    "border": {
+      "default": "#0c1014",
+      "defaultInverted": "#ffffff",
+      "subtler": "#dbdfe4",
+      "stroke": "#dbdbdb"
+    },
+    "system": {
+      "dark": "#000000",
+      "light": "#000000"
+    },
+    "whiteTransparent": "rgba(255,255,255,0.5)",
+    "button": "#212327"
+  },
+  "spacing": {
+    "0px": "0px",
+    "2px": "2px",
+    "4px": "4px",
+    "6px": "6px",
+    "8px": "8px",
+    "10px": "10px",
+    "12px": "12px",
+    "16px": "16px",
+    "24px": "24px",
+    "32px": "32px",
+    "64px": "64px",
+    "80px": "80px",
+    "-5px": "-5px"
+  },
+  "borderRadius": {
+    "0px": "0px",
+    "6px": "6px",
+    "8px": "8px",
+    "12px": "12px",
+    "16px": "16px",
+    "100px": "100px"
+  },
+  "typography": {
+    "fontFamily": {
+      "sfPro": "'SF Pro', sans-serif",
+      "sfProDisplay": "'SF Pro Display', sans-serif",
+      "inter": "'Inter', sans-serif"
+    },
+    "fontSize": {
+      "xs": "10px",
+      "s": "11px",
+      "m": "12px",
+      "l": "13px",
+      "xl": "14px",
+      "2xl": "15px",
+      "3xl": "21px",
+      "system": "17px"
+    },
+    "fontWeight": {
+      "regular": "400",
+      "medium": "500",
+      "semibold": "600",
+      "bold": "700",
+      "system": "590"
+    },
+    "lineHeight": {
+      "normal": "normal",
+      "100": "100%",
+      "system": "22px"
+    },
+    "letterSpacing": {
+      "0": "0px",
+      "0.13px": "0.13px",
+      "0.14px": "0.14px",
+      "0.21px": "0.21px",
+      "0.22px": "0.22px",
+      "0.24px": "0.24px",
+      "0.26px": "0.26px",
+      "0.33px": "0.33px",
+      "0.4px": "0.4px",
+      "1px": "1px",
+      "2px": "2px",
+      "3px": "3px"
+    }
+  },
+  "shadows": {
+    "drop": "0px 0px 6px 0px rgba(0,0,0,0.3)",
+    "pinned": "0px 0px 5px 0px rgba(0,0,0,0.3)"
+  },
+  "breakpoints": {
+    "mobile": "375px"
+  }
+}
+
