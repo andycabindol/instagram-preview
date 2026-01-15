@@ -297,7 +297,6 @@ function AppContent({
           onNext={handleNextFromEdit}
           images={imagesForEdit}
           onOpenPreview={handleOpenPreview}
-          profilePosts={profilePosts}
         />
       )}
       {currentScreen === 4 && showPreview && (
