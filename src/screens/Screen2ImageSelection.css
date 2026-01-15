@@ -104,8 +104,8 @@
 }
 
 .gallery-button {
-  background-color: #212327;
-  border: 2px solid #212327;
+  background-color: #0c1014;
+  border: 2px solid #0c1014;
   border-radius: 100px;
   width: 32px;
   height: 32px;
@@ -118,8 +118,8 @@
 }
 
 .gallery-button:hover {
-  background-color: #2a2d32;
-  border-color: #2a2d32;
+  background-color: #212327;
+  border-color: #212327;
 }
 
 .gallery-button.active {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import StatusBar from '../components/StatusBar'
+import { useVariant } from '../variants/VariantProvider'
 import HomeIndicator from '../components/HomeIndicator'
 import './Screen1Feed.css'
 
@@ -45,8 +45,8 @@ function Post({ postData, index }) {
         <div className="action-bar">
           <div className="actions-left">
             <div className="action-item">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="action-icon liked">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff0034"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="action-icon">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#0c1014" strokeWidth="2" fill="none" strokeLinejoin="round"/>
               </svg>
               <span className="action-count">{postData.likes}</span>
             </div>
@@ -74,9 +74,13 @@ function Post({ postData, index }) {
         {/* Likes */}
         <div className="likes-section">
           <div className="liker-avatars">
-            {[1, 2, 3].map((i) => (
+            {[
+              'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=faces',
+              'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150&h=150&fit=crop&crop=faces',
+              'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=150&h=150&fit=crop&crop=faces'
+            ].map((avatarUrl, i) => (
               <div key={i} className="liker-avatar" style={{ zIndex: 4 - i }}>
-                <img src={`http://localhost:3845/assets/2639dd094add503fa06938ece0528107d856f013.png`} alt={`Liker ${i}`} />
+                <img src={avatarUrl} alt={`Liker ${i + 1}`} />
               </div>
             ))}
           </div>
@@ -115,17 +119,20 @@ function Post({ postData, index }) {
 }
 
 function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
+  const { variantId, setVariant, isProd, isVariant } = useVariant()
   const [isScrollingDown, setIsScrollingDown] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [showPrototypeMenu, setShowPrototypeMenu] = useState(false)
   const feedRef = useRef(null)
+  const menuRef = useRef(null)
 
   // Use posts from props if provided, otherwise use default posts
   const defaultPosts = [
     {
       username: 'gursky.studio',
       verified: true,
-      avatar: 'http://localhost:3845/assets/28452d94f6c6b766a5d79db42b3bedceec23a9db.png',
-      image: 'http://localhost:3845/assets/5f7a8ab847224a6fcd037ae7785396259c019449.png',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=500&fit=crop',
       likes: '1.139',
       comments: '58',
       shares: '7',
@@ -140,8 +147,8 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
     {
       username: 'photographer.pro',
       verified: false,
-      avatar: 'http://localhost:3845/assets/aaaf628de260c2832e6e403cc52aca3cd168402d.png',
-      image: 'http://localhost:3845/assets/3b722c714bc39d648077d45bd046f19102476402.png',
+      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop',
       likes: '892',
       comments: '23',
       shares: '12',
@@ -156,8 +163,8 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
     {
       username: 'nature.lover',
       verified: false,
-      avatar: 'http://localhost:3845/assets/8637874c7b73e4ad8e93f4f674a9469989a1b28a.png',
-      image: 'http://localhost:3845/assets/911201df39ab707766f6d049048e21d7c0789617.png',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop',
       likes: '2.4K',
       comments: '156',
       shares: '89',
@@ -171,8 +178,8 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
     {
       username: 'art.daily',
       verified: true,
-      avatar: 'http://localhost:3845/assets/28452d94f6c6b766a5d79db42b3bedceec23a9db.png',
-      image: 'http://localhost:3845/assets/5f7a8ab847224a6fcd037ae7785396259c019449.png',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=500&fit=crop',
       likes: '5.7K',
       comments: '234',
       shares: '145',
@@ -187,8 +194,8 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
     {
       username: 'foodie.world',
       verified: false,
-      avatar: 'http://localhost:3845/assets/aaaf628de260c2832e6e403cc52aca3cd168402d.png',
-      image: 'http://localhost:3845/assets/3b722c714bc39d648077d45bd046f19102476402.png',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=500&fit=crop',
       likes: '3.1K',
       comments: '189',
       shares: '67',
@@ -202,8 +209,8 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
     {
       username: 'fitness.motivation',
       verified: false,
-      avatar: 'http://localhost:3845/assets/8637874c7b73e4ad8e93f4f674a9469989a1b28a.png',
-      image: 'http://localhost:3845/assets/911201df39ab707766f6d049048e21d7c0789617.png',
+      avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=500&fit=crop',
       likes: '8.9K',
       comments: '456',
       shares: '234',
@@ -218,6 +225,20 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
   ]
   
   const posts = postsProp || defaultPosts
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowPrototypeMenu(false)
+      }
+    }
+
+    if (showPrototypeMenu) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showPrototypeMenu])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -244,8 +265,12 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
   return (
     <div className="screen1-feed" ref={feedRef}>
       <div className={`top-bar ${isScrollingDown ? 'nav-hidden' : ''}`}>
-        <StatusBar />
-        
+        {/* Variant Badge */}
+        {!isProd() && (
+          <div className="variant-badge">
+            {variantId.toUpperCase()}
+          </div>
+        )}
         {/* Navigation Bar */}
         <div className="nav-bar">
         <button className="plus-button" onClick={onPlusClick}>
@@ -253,15 +278,59 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
             <path d="M12 5V19M5 12H19" stroke="#0c1014" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </button>
-        <div className="nav-headline">
-          <img src="http://localhost:3845/assets/7e94f66f0f67201408597e3e8df9bfbf8a77d656.svg" alt="Instagram" className="instagram-logo" />
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="chevron-down">
-            <path d="M4 6L8 10L12 6" stroke="#0c1014" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+        <div className="nav-headline" ref={menuRef} style={{ position: 'relative' }}>
+          <div 
+            onClick={() => setShowPrototypeMenu(!showPrototypeMenu)}
+            style={{ display: 'flex', gap: '2px', alignItems: 'center', cursor: 'pointer' }}
+          >
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png" alt="Instagram" className="instagram-logo" />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="chevron-down">
+              <path d="M4 6L8 10L12 6" stroke="#0c1014" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          {showPrototypeMenu && (
+            <div className="prototype-menu">
+              <div 
+                className={`prototype-menu-item ${variantId === 'prod' ? 'active' : ''}`}
+                onClick={() => { setVariant('prod'); setShowPrototypeMenu(false); }}
+              >
+                <span>Prod (no changes)</span>
+                {variantId === 'prod' && <span className="check">✓</span>}
+              </div>
+              <div 
+                className={`prototype-menu-item ${variantId === 'v1' ? 'active' : ''}`}
+                onClick={() => { setVariant('v1'); setShowPrototypeMenu(false); }}
+              >
+                <span>v1 - No editing</span>
+                {variantId === 'v1' && <span className="check">✓</span>}
+              </div>
+              <div 
+                className={`prototype-menu-item ${variantId === 'v2' ? 'active' : ''}`}
+                onClick={() => { setVariant('v2'); setShowPrototypeMenu(false); }}
+              >
+                <span>v2 - Cropping & cover</span>
+                {variantId === 'v2' && <span className="check">✓</span>}
+              </div>
+              <div 
+                className={`prototype-menu-item ${variantId === 'v3' ? 'active' : ''}`}
+                onClick={() => { setVariant('v3'); setShowPrototypeMenu(false); }}
+              >
+                <span>v3 - Cover top selection</span>
+                {variantId === 'v3' && <span className="check">✓</span>}
+              </div>
+              <div 
+                className={`prototype-menu-item ${variantId === 'v4' ? 'active' : ''}`}
+                onClick={() => { setVariant('v4'); setShowPrototypeMenu(false); }}
+              >
+                <span>v4 - Cover bottom selection</span>
+                {variantId === 'v4' && <span className="check">✓</span>}
+              </div>
+            </div>
+          )}
         </div>
         <div className="nav-action">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#0c1014"/>
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#0c1014" strokeWidth="2" fill="none" strokeLinejoin="round"/>
           </svg>
         </div>
         </div>
@@ -274,28 +343,33 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
           <div className="story-item my-story">
             <div className="story-picture">
               <div className="story-avatar">
-                <img src="http://localhost:3845/assets/28452d94f6c6b766a5d79db42b3bedceec23a9db.png" alt="Your story" />
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces" alt="Your story" />
               </div>
               <div className="story-add-badge">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <circle cx="9" cy="9" r="8" fill="#0c1014" stroke="#ffffff" strokeWidth="3"/>
+                <svg width="24" height="24" viewBox="0 0 18 18" fill="none">
+                  <circle cx="9" cy="9" r="8" fill="#0c1014" stroke="#ffffff" strokeWidth="2"/>
                   <path d="M9 5V13M5 9H13" stroke="#f7f9f9" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </div>
             </div>
             <p className="story-label">Your story</p>
           </div>
-          {[1, 2, 3, 4].map((i) => (
+          {[
+            { avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces', username: 'sarah.photo' },
+            { avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=faces', username: 'mike.travels' },
+            { avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=faces', username: 'emma.design' },
+            { avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces', username: 'alex.fitness' }
+          ].map((story, i) => (
             <div key={i} className="story-item">
               <div className="story-picture">
                 <svg width="78" height="78" viewBox="0 0 78 78" fill="none">
                   <circle cx="39" cy="39" r="38.5" stroke="#dbdbdb"/>
                 </svg>
                 <div className="story-avatar">
-                  <img src={`http://localhost:3845/assets/aaaf628de260c2832e6e403cc52aca3cd168402d.png`} alt={`User ${i}`} />
+                  <img src={story.avatar} alt={`User ${i + 1}`} />
                 </div>
               </div>
-              <p className="story-label">username</p>
+              <p className="story-label">{story.username}</p>
             </div>
           ))}
         </div>
@@ -321,9 +395,7 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
           </div>
           <div className="tab">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="3" width="18" height="18" rx="2" stroke="#0c1014" strokeWidth="2" fill="none"/>
-              <line x1="9" y1="3" x2="9" y2="21" stroke="#0c1014" strokeWidth="2"/>
-              <line x1="15" y1="3" x2="15" y2="21" stroke="#0c1014" strokeWidth="2"/>
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="#0c1014" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
           <div className="tab">
@@ -333,7 +405,7 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
           </div>
           <div className="tab" onClick={onProfileClick} style={{ cursor: 'pointer' }}>
             <div className="profile-tab-avatar">
-              <img src="http://localhost:3845/assets/28452d94f6c6b766a5d79db42b3bedceec23a9db.png" alt="Profile" />
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces" alt="Profile" />
             </div>
           </div>
         </div>

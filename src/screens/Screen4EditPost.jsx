@@ -1,13 +1,12 @@
 import React from 'react'
-import StatusBar from '../components/StatusBar'
+import { useVariant } from '../variants/VariantProvider'
 import HomeIndicator from '../components/HomeIndicator'
 import './Screen4EditPost.css'
 
 function Screen4EditPost({ onClose, onNext, images = [] }) {
+  const { config } = useVariant()
   return (
     <div className="screen4-edit-post">
-      <StatusBar dark />
-      
       {/* Navigation Bar */}
       <div className="nav-bar">
         <button className="close-button" onClick={onClose}>
@@ -31,61 +30,88 @@ function Screen4EditPost({ onClose, onNext, images = [] }) {
           // Fallback if no images are passed
           <>
             <div className="carousel-image">
-              <img src="http://localhost:3845/assets/d58c09f5cf9a359f45487f6b73532da8ccff5c91.png" alt="Post 1" />
+              <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=500&fit=crop" alt="Post 1" />
             </div>
             <div className="carousel-image">
-              <img src="http://localhost:3845/assets/d58c09f5cf9a359f45487f6b73532da8ccff5c91.png" alt="Post 2" />
-              <img src="http://localhost:3845/assets/5106d463d5f468766199540286c27f4867aaa522.png" alt="Post 2 overlay" className="overlay-image" />
+              <img src="https://images.unsplash.com/photo-1522770179533-24471fcdba45?w=400&h=500&fit=crop" alt="Post 2" />
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop" alt="Post 2 overlay" className="overlay-image" />
             </div>
           </>
         )}
       </div>
 
       {/* Toolbar - Post Actions */}
-      <div className="toolbar-post-actions">
-        <div className="reels-toolbar">
-          <div className="toolbar-button">
-            <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18V5l12-2v13" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-              <circle cx="6" cy="18" r="3" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-              <circle cx="18" cy="16" r="3" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-            </svg>
-            <span>Music</span>
-          </div>
-          <div className="toolbar-button">
-            <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-              <path d="M4 7h16M4 12h16M4 17h16" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            <span>Text</span>
-          </div>
-          <div className="toolbar-button">
-            <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="3" width="18" height="18" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-            </svg>
-            <span>Overlay</span>
-          </div>
-          <div className="toolbar-button">
-            <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2v20M2 12h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-            <span>Filter</span>
-          </div>
-          <div className="toolbar-button">
-            <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="5" r="1.5" fill="#f7f9f9"/>
-              <circle cx="12" cy="12" r="1.5" fill="#f7f9f9"/>
-              <circle cx="12" cy="19" r="1.5" fill="#f7f9f9"/>
-            </svg>
-            <span>Edit</span>
+      {config.showEditToolbar && (
+        <div className="toolbar-post-actions">
+          <div className="reels-toolbar">
+            <div className="toolbar-button">
+              <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18V5l12-2v13" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+                <circle cx="6" cy="18" r="3" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+                <circle cx="18" cy="16" r="3" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+              </svg>
+              <span>Music</span>
+            </div>
+            <div className="toolbar-button">
+              <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+              <span>Text</span>
+            </div>
+            <div className="toolbar-button">
+              <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+              </svg>
+              <span>Overlay</span>
+            </div>
+            <div className="toolbar-button">
+              <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2v20M2 12h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+              <span>Filter</span>
+            </div>
+            {config.canEdit && (
+              <div className="toolbar-button">
+                <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="5" r="1.5" fill="#f7f9f9"/>
+                  <circle cx="12" cy="12" r="1.5" fill="#f7f9f9"/>
+                  <circle cx="12" cy="19" r="1.5" fill="#f7f9f9"/>
+                </svg>
+                <span>Edit</span>
+              </div>
+            )}
+            {config.showCroppingTools && (
+              <div className="toolbar-button">
+                <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+                  <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="#f7f9f9" strokeWidth="1" fill="none"/>
+                </svg>
+                <span>Crop</span>
+              </div>
+            )}
+            {config.showCoverSelectionUI && (
+              <div className="toolbar-button">
+                <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                  <rect x="2" y="4" width="20" height="16" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+                  {config.coverSelectionMode === 'top' && (
+                    <path d="M2 8h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
+                  )}
+                  {config.coverSelectionMode === 'bottom' && (
+                    <path d="M2 16h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
+                  )}
+                </svg>
+                <span>Cover</span>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      )}
 
       {/* Toolbar - Edit Post */}
       <div className="toolbar-edit-post">
         <div className="edit-toolbar">
           <div className="add-image-button">
-            <img src={images.length > 0 ? images[0] : "http://localhost:3845/assets/d58c09f5cf9a359f45487f6b73532da8ccff5c91.png"} alt="Thumbnail" />
+            <img src={images.length > 0 ? images[0] : "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop"} alt="Thumbnail" />
             <div className="add-overlay">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M12 5v14M5 12h14" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>

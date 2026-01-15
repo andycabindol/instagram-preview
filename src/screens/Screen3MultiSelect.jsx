@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
-import StatusBar from '../components/StatusBar'
 import './Screen3MultiSelect.css'
 
 function Screen3MultiSelect({ onClose, onNext }) {
   const [selectedImages, setSelectedImages] = useState([0, 1])
   
   const images = [
-    'http://localhost:3845/assets/d58c09f5cf9a359f45487f6b73532da8ccff5c91.png',
-    'http://localhost:3845/assets/5106d463d5f468766199540286c27f4867aaa522.png',
-    'http://localhost:3845/assets/1a32d037c80f7dfa3545f7af86bcc6917f7970a4.png',
-    'http://localhost:3845/assets/bdfb593bad47e3aeafacd07ce5135b62040393cb.png',
-    'http://localhost:3845/assets/d9768eef539368117344090ebe2bfd56f74400fc.png',
-    'http://localhost:3845/assets/b16af3e7086f734dc4e2de909e3a1e7fba92de32.png',
-    'http://localhost:3845/assets/ea2e4e64cdf4bd2c76487002933ec5a5161c4ef5.png',
-    'http://localhost:3845/assets/247128db3dc790bc8b9430f3e9b82fa1f73eff61.png',
-    'http://localhost:3845/assets/2e53e34b5c2f600c0ed0c4c241253f4e6f12018e.png',
-    'http://localhost:3845/assets/d6a1c21fdbd9aa83431e92ac0480cf421dcf568a.png',
-    'http://localhost:3845/assets/a8fb39e4d4554196fce04fc1081325682f57eebf.png',
+    'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1522770179533-24471fcdba45?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=400&fit=crop',
   ]
 
   const toggleImage = (index) => {
@@ -29,8 +28,6 @@ function Screen3MultiSelect({ onClose, onNext }) {
 
   return (
     <div className="screen3-multiselect">
-      <StatusBar dark />
-      
       {/* Top Navigation Bar */}
       <div className="nav-bar-top">
         <button className="close-button" onClick={onClose}>
@@ -64,10 +61,10 @@ function Screen3MultiSelect({ onClose, onNext }) {
         </div>
         <button className="gallery-button active">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <rect x="1" y="1" width="6" height="6" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
-            <rect x="9" y="1" width="6" height="6" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
-            <rect x="1" y="9" width="6" height="6" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
-            <rect x="9" y="9" width="6" height="6" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+            <rect x="1" y="1" width="6" height="6" strokeWidth="1.5" fill="none"/>
+            <rect x="9" y="1" width="6" height="6" strokeWidth="1.5" fill="none"/>
+            <rect x="1" y="9" width="6" height="6" strokeWidth="1.5" fill="none"/>
+            <rect x="9" y="9" width="6" height="6" strokeWidth="1.5" fill="none"/>
           </svg>
         </button>
       </div>

@@ -74,7 +74,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 32px 8px 6px;
+  padding: 48px 32px 8px 6px;
   width: 375px;
 }
 
@@ -125,8 +125,8 @@
   position: absolute;
   bottom: 7px;
   right: 7px;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   background-color: #0c1014;
   border: 3px solid #ffffff;
   border-radius: 100px;
@@ -490,17 +490,29 @@
 }
 
 .tab-bar {
-  position: absolute;
+  position: fixed;
   background-color: #ffffff;
   border-top: 0.5px solid #dbdfe4;
   bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   gap: 0;
   height: 72px;
   align-items: center;
-  left: 0;
   width: 375px;
+  z-index: 1000;
+  max-width: 375px;
+}
+
+@media (max-width: 375px) {
+  .tab-bar {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 375px;
+  }
 }
 
 .tabs {

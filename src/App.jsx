@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { VariantProvider } from './variants/VariantProvider'
 import Screen1Feed from './screens/Screen1Feed'
 import Screen2ImageSelection from './screens/Screen2ImageSelection'
 import Screen3MultiSelect from './screens/Screen3MultiSelect'
@@ -14,28 +15,28 @@ function App() {
   const [imagesForEdit, setImagesForEdit] = useState([])
   const [previousScreen, setPreviousScreen] = useState(2) // Track which screen we came from
   const [profilePosts, setProfilePosts] = useState([
-    'http://localhost:3845/assets/5f7a8ab847224a6fcd037ae7785396259c019449.png',
-    'http://localhost:3845/assets/3b722c714bc39d648077d45bd046f19102476402.png',
-    'http://localhost:3845/assets/ff54acb39e21a7802526cd38090f80738fc604af.png',
-    'http://localhost:3845/assets/3ad05cc6647c86e275d256ef92fff2926bbcd020.png',
-    'http://localhost:3845/assets/f70da884556d448739bb8f23e277e3955ee66cd3.png',
-    'http://localhost:3845/assets/f6e5fbd603ae2713a9021e89080d29123ba83ad8.png',
-    'http://localhost:3845/assets/e288872889e28e5744aae4abd9b756a67b8a91b1.png',
-    'http://localhost:3845/assets/59fbbf9ea908c1fde0f911ae75e3dedfc5a333a5.png',
-    'http://localhost:3845/assets/7f1b1c5f2c0851df6518654bd6ced7384b984cc1.png',
-    'http://localhost:3845/assets/9d16b88e1e13e036e5c78a94904bd433f1543315.png',
-    'http://localhost:3845/assets/c953879aca4319f56ece82a4bcf7db19af094740.png',
-    'http://localhost:3845/assets/396941d94def95eb4be902d9ed8ecabf81774414.png',
-    'http://localhost:3845/assets/6e3edc07a961e2a2edb3db46980a46a101f08157.png',
-    'http://localhost:3845/assets/76bccfc15181a44fafda4a332ed1992951070130.png',
+    'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1522770179533-24471fcdba45?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
   ])
   
   const [feedPosts, setFeedPosts] = useState([
     {
       username: 'gursky.studio',
       verified: true,
-      avatar: 'http://localhost:3845/assets/28452d94f6c6b766a5d79db42b3bedceec23a9db.png',
-      image: 'http://localhost:3845/assets/5f7a8ab847224a6fcd037ae7785396259c019449.png',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=500&fit=crop',
       likes: '1.139',
       comments: '58',
       shares: '7',
@@ -50,8 +51,8 @@ function App() {
     {
       username: 'photographer.pro',
       verified: false,
-      avatar: 'http://localhost:3845/assets/aaaf628de260c2832e6e403cc52aca3cd168402d.png',
-      image: 'http://localhost:3845/assets/3b722c714bc39d648077d45bd046f19102476402.png',
+      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop',
       likes: '892',
       comments: '23',
       shares: '12',
@@ -66,8 +67,8 @@ function App() {
     {
       username: 'nature.lover',
       verified: false,
-      avatar: 'http://localhost:3845/assets/8637874c7b73e4ad8e93f4f674a9469989a1b28a.png',
-      image: 'http://localhost:3845/assets/911201df39ab707766f6d049048e21d7c0789617.png',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop',
       likes: '2.4K',
       comments: '156',
       shares: '89',
@@ -81,8 +82,8 @@ function App() {
     {
       username: 'art.daily',
       verified: true,
-      avatar: 'http://localhost:3845/assets/28452d94f6c6b766a5d79db42b3bedceec23a9db.png',
-      image: 'http://localhost:3845/assets/5f7a8ab847224a6fcd037ae7785396259c019449.png',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=500&fit=crop',
       likes: '5.7K',
       comments: '234',
       shares: '145',
@@ -97,8 +98,8 @@ function App() {
     {
       username: 'foodie.world',
       verified: false,
-      avatar: 'http://localhost:3845/assets/aaaf628de260c2832e6e403cc52aca3cd168402d.png',
-      image: 'http://localhost:3845/assets/3b722c714bc39d648077d45bd046f19102476402.png',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=500&fit=crop',
       likes: '3.1K',
       comments: '189',
       shares: '67',
@@ -112,8 +113,8 @@ function App() {
     {
       username: 'fitness.motivation',
       verified: false,
-      avatar: 'http://localhost:3845/assets/8637874c7b73e4ad8e93f4f674a9469989a1b28a.png',
-      image: 'http://localhost:3845/assets/911201df39ab707766f6d049048e21d7c0789617.png',
+      avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=500&fit=crop',
       likes: '8.9K',
       comments: '456',
       shares: '234',
@@ -158,8 +159,8 @@ function App() {
     const newPost = {
       username: 'gursky.studio',
       verified: true,
-      avatar: 'http://localhost:3845/assets/28452d94f6c6b766a5d79db42b3bedceec23a9db.png',
-      image: images[0] || 'http://localhost:3845/assets/5f7a8ab847224a6fcd037ae7785396259c019449.png',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces',
+      image: images[0] || 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=500&fit=crop',
       images: images, // Store all images for carousel support
       likes: '0',
       comments: '0',
@@ -184,14 +185,15 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      {currentScreen === 1 && (
-        <Screen1Feed 
-          onPlusClick={handlePlusClick} 
-          posts={feedPosts}
-          onProfileClick={() => navigateToScreen(6)}
-        />
-      )}
+    <VariantProvider>
+      <div className="app-container">
+        {currentScreen === 1 && (
+          <Screen1Feed 
+            onPlusClick={handlePlusClick} 
+            posts={feedPosts}
+            onProfileClick={() => navigateToScreen(6)}
+          />
+        )}
       {currentScreen === 2 && (
         <Screen2ImageSelection
           onClose={() => navigateToScreen(1)}
@@ -223,7 +225,8 @@ function App() {
       {currentScreen === 6 && (
         <Screen6Profile onHomeClick={() => navigateToScreen(1)} postImages={profilePosts} />
       )}
-    </div>
+      </div>
+    </VariantProvider>
   )
 }
 

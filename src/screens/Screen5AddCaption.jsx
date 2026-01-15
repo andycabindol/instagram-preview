@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import StatusBar from '../components/StatusBar'
 import HomeIndicator from '../components/HomeIndicator'
 import './Screen5AddCaption.css'
 
@@ -7,8 +6,6 @@ function Screen5AddCaption({ onBack, onShare, images = [] }) {
   const [caption, setCaption] = useState('')
   return (
     <div className="screen5-add-caption">
-      <StatusBar />
-      
       {/* Navigation Bar */}
       <div className="nav-bar">
         <button className="back-button" onClick={onBack}>
@@ -33,11 +30,11 @@ function Screen5AddCaption({ onBack, onShare, images = [] }) {
             // Fallback if no images are passed
             <>
               <div className="preview-image">
-                <img src="http://localhost:3845/assets/d58c09f5cf9a359f45487f6b73532da8ccff5c91.png" alt="Post 1" />
+                <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=500&fit=crop" alt="Post 1" />
               </div>
               <div className="preview-image">
-                <img src="http://localhost:3845/assets/d58c09f5cf9a359f45487f6b73532da8ccff5c91.png" alt="Post 2" />
-                <img src="http://localhost:3845/assets/5106d463d5f468766199540286c27f4867aaa522.png" alt="Post 2 overlay" className="overlay-image" />
+                <img src="https://images.unsplash.com/photo-1522770179533-24471fcdba45?w=400&h=500&fit=crop" alt="Post 2" />
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop" alt="Post 2 overlay" className="overlay-image" />
               </div>
             </>
           )}

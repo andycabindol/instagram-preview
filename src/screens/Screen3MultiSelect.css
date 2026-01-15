@@ -110,8 +110,8 @@
 }
 
 .gallery-button {
-  background-color: #ffffff;
-  border: none;
+  background-color: #0c1014;
+  border: 2px solid #0c1014;
   border-radius: 100px;
   width: 32px;
   height: 32px;
@@ -120,10 +120,22 @@
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.gallery-button svg {
+  stroke: #f7f9f9;
+  transition: stroke 0.2s ease-in-out;
+}
+
+.gallery-button.active {
+  background-color: #8593ff;
+  border-color: #8593ff;
+  box-shadow: 0 0 8px rgba(133, 147, 255, 0.5);
 }
 
 .gallery-button.active svg {
-  stroke: #0c1014;
+  stroke: #ffffff;
 }
 
 .image-grid {
