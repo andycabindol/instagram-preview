@@ -1,9 +1,30 @@
 import React, { useState } from 'react'
+import { useVariant } from '../variants/VariantProvider'
 import HomeIndicator from '../components/HomeIndicator'
+import ProfileGridPreviewModal from '../components/ProfileGridPreviewModal'
 import './Screen5AddCaption.css'
 
-function Screen5AddCaption({ onBack, onShare, images = [] }) {
+function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [] }) {
   const [caption, setCaption] = useState('')
+  const [showProfilePreview, setShowProfilePreview] = useState(false)
+  const { config, isVariant } = useVariant()
+
+  // Get cover image (first image is the cover)
+  const coverImage = images.length > 0 ? images[0] : null
+  const hasCoverImage = coverImage !== null
+  const isV1 = isVariant('v1')
+  const showProfilePreviewButton = isV1 && config.enableProfilePreview
+
+  const handleOpenProfilePreview = () => {
+    if (hasCoverImage) {
+      setShowProfilePreview(true)
+    }
+  }
+
+  const handleCloseProfilePreview = () => {
+    setShowProfilePreview(false)
+  }
+
   return (
     <div className="screen5-add-caption">
       {/* Navigation Bar */}
@@ -153,11 +174,36 @@ function Screen5AddCaption({ onBack, onShare, images = [] }) {
 
       {/* Bottom Toolbar */}
       <div className="bottom-toolbar">
+        {showProfilePreviewButton && (
+          <button 
+            className="preview-profile-button-v5" 
+            onClick={handleOpenProfilePreview}
+            disabled={!hasCoverImage}
+            title={!hasCoverImage ? 'Select a cover image to preview' : 'Preview on Profile'}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+              <rect x="14" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+              <rect x="3" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+              <rect x="14" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+            </svg>
+            <span>Preview on Profile</span>
+          </button>
+        )}
         <button className="share-button" onClick={() => onShare(images, caption)}>
           <span>Share</span>
         </button>
         <HomeIndicator />
       </div>
+
+      {/* Profile Grid Preview Modal */}
+      {showProfilePreview && coverImage && (
+        <ProfileGridPreviewModal
+          coverImage={coverImage}
+          profilePosts={profilePosts}
+          onClose={handleCloseProfilePreview}
+        />
+      )}
     </div>
   )
 }

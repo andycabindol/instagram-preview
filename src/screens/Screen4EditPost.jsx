@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useVariant } from '../variants/VariantProvider'
 import HomeIndicator from '../components/HomeIndicator'
 import PreviewButton from '../components/PreviewButton'
+import ProfileGridPreviewModal from '../components/ProfileGridPreviewModal'
 import './Screen4EditPost.css'
 
-function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
-  const { config } = useVariant()
+function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview, profilePosts = [] }) {
+  const { config, isVariant } = useVariant()
   const [currentImages, setCurrentImages] = useState([...images])
+  const [showProfilePreview, setShowProfilePreview] = useState(false)
 
   // Sync with prop changes (e.g., when preview updates images)
   useEffect(() => {
@@ -17,6 +19,23 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
   const handleOpenPreview = () => {
     onOpenPreview(currentImages)
   }
+
+  // Get cover image (first image is the cover)
+  const coverImage = currentImages.length > 0 ? currentImages[0] : null
+  const hasCoverImage = coverImage !== null
+  const isV1 = isVariant('v1')
+  const showProfilePreviewButton = isV1 && config.enableProfilePreview
+
+  const handleOpenProfilePreview = () => {
+    if (hasCoverImage) {
+      setShowProfilePreview(true)
+    }
+  }
+
+  const handleCloseProfilePreview = () => {
+    setShowProfilePreview(false)
+  }
+
   return (
     <div className="screen4-edit-post">
       {/* Navigation Bar */}
@@ -133,6 +152,22 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
           {config.enablePreviewFlow && (
             <PreviewButton onClick={handleOpenPreview} />
           )}
+          {showProfilePreviewButton && (
+            <button 
+              className="preview-profile-button" 
+              onClick={handleOpenProfilePreview}
+              disabled={!hasCoverImage}
+              title={!hasCoverImage ? 'Select a cover image to preview' : 'Preview on Profile'}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+                <rect x="14" y="3" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+                <rect x="3" y="14" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+                <rect x="14" y="14" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+              </svg>
+              <span>Preview on Profile</span>
+            </button>
+          )}
           <button className="next-button-large" onClick={() => onNext(currentImages)}>
             <span>Next</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -142,6 +177,15 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
         </div>
         <HomeIndicator dark />
       </div>
+
+      {/* Profile Grid Preview Modal */}
+      {showProfilePreview && coverImage && (
+        <ProfileGridPreviewModal
+          coverImage={coverImage}
+          profilePosts={profilePosts}
+          onClose={handleCloseProfilePreview}
+        />
+      )}
     </div>
   )
 }

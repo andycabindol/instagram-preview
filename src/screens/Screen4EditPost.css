@@ -208,6 +208,48 @@
   flex-shrink: 0;
 }
 
+.screen4-edit-post .preview-profile-button {
+  background-color: transparent;
+  border: 1px solid rgba(247, 249, 249, 0.3);
+  border-radius: 8px;
+  display: flex;
+  gap: 6px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.screen4-edit-post .preview-profile-button:hover:not(:disabled) {
+  background-color: rgba(247, 249, 249, 0.1);
+  border-color: rgba(247, 249, 249, 0.5);
+}
+
+.screen4-edit-post .preview-profile-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.screen4-edit-post .preview-profile-button svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.screen4-edit-post .preview-profile-button span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: normal;
+  color: #f7f9f9;
+  text-align: center;
+  letter-spacing: 0.22px;
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 450px)  {
 
   body.screen-4 {

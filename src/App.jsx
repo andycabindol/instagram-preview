@@ -297,6 +297,7 @@ function AppContent({
           onNext={handleNextFromEdit}
           images={imagesForEdit}
           onOpenPreview={handleOpenPreview}
+          profilePosts={profilePosts}
         />
       )}
       {currentScreen === 4 && showPreview && (
@@ -313,6 +314,7 @@ function AppContent({
           onBack={() => navigateToScreen(4)}
           onShare={handleShare}
           images={imagesForEdit}
+          profilePosts={profilePosts}
         />
       )}
       {currentScreen === 6 && (
