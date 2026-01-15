@@ -26,8 +26,8 @@ function Screen2ImageSelection({ onClose, onNext, onMultiSelectToggle, multiSele
     setIsMultiSelect(newMultiSelectMode)
     onMultiSelectToggle()
     
-    // When enabling multi-select, add current selected photo as #1
-    if (newMultiSelectMode && !selectedImages.includes(selectedImageIndex)) {
+    // When enabling multi-select, start fresh with current photo as #1
+    if (newMultiSelectMode) {
       setSelectedImages([selectedImageIndex])
     }
   }
