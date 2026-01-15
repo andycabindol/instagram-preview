@@ -13,6 +13,7 @@
 
 .screen1-feed > * {
   flex-shrink: 0;
+  
 }
 
 /* Top Bar (StatusBar + NavBar) */
