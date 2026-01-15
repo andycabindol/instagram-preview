@@ -267,7 +267,7 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
       <div className={`top-bar ${isScrollingDown ? 'nav-hidden' : ''}`}>
         {/* Variant Badge */}
         {!isProd() && (
-          <div className="variant-badge">
+          <div className={`variant-badge variant-badge-${variantId}`}>
             {variantId.toUpperCase()}
           </div>
         )}

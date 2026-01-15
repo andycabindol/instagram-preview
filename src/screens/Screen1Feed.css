@@ -29,7 +29,6 @@
   position: absolute;
   top: 8px;
   right: 16px;
-  background-color: #0098fd;
   color: #ffffff;
   padding: 4px 8px;
   border-radius: 4px;
@@ -39,6 +38,22 @@
   letter-spacing: 0.5px;
   z-index: 1001;
   pointer-events: none;
+}
+
+.variant-badge-v1 {
+  background-color: #e74c3c; /* Red */
+}
+
+.variant-badge-v2 {
+  background-color: #3498db; /* Blue */
+}
+
+.variant-badge-v3 {
+  background-color: #2ecc71; /* Green */
+}
+
+.variant-badge-v4 {
+  background-color: #f39c12; /* Orange */
 }
 
 /* .top-bar.nav-hidden {
