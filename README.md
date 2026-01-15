@@ -1,6 +1,6 @@
 # Instagram Preview
 
-A React implementation of the Instagram posting flow with 6 screens, matching the Figma designs exactly.
+A React implementation of the Instagram posting flow with 6 screens.
 
 ## Features
 
