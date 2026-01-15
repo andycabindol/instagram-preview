@@ -1,0 +1,138 @@
+.cover-selector-bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 375px;
+  background-color: #0c1014;
+  border-top: 1px solid #25292e;
+  border-radius: 16px 16px 0 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.cover-selector-bottom-sheet.hidden {
+  transform: translateX(-50%) translateY(calc(100% - 24px));
+}
+
+.cover-selector-grabber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  border-radius: 16px 16px 0 0;
+}
+
+.grabber-handle {
+  width: 40px;
+  height: 4px;
+  background-color: #4a5df9;
+  border-radius: 2px;
+}
+
+.cover-selector-content {
+  padding: 16px;
+  padding-bottom: 24px;
+}
+
+.cover-selector-bottom-sheet.v2 .cover-selector-content {
+  padding-bottom: 40px;
+}
+
+.cover-selector-header {
+  margin-bottom: 12px;
+}
+
+.cover-selector-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #f7f9f9;
+}
+
+.cover-selector-thumbnails {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.cover-selector-thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.cover-selector-thumbnails::-webkit-scrollbar-track {
+  background: #212327;
+  border-radius: 2px;
+}
+
+.cover-selector-thumbnails::-webkit-scrollbar-thumb {
+  background: #4a5df9;
+  border-radius: 2px;
+}
+
+.cover-thumbnail {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.cover-thumbnail:hover {
+  border-color: #4a5df9;
+}
+
+.cover-thumbnail.selected {
+  border-color: #4a5df9;
+}
+
+.cover-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-thumbnail-check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(74, 93, 249, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-selector-done-button {
+  width: 100%;
+  background-color: #4a5df9;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cover-selector-done-button:hover {
+  background-color: #3a4de9;
+}
+
+.cover-selector-done-button:active {
+  background-color: #2a3dd9;
+}
+
+.cover-selector-done-button span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+}

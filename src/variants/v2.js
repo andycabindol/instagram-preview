@@ -8,4 +8,5 @@ export const v2Config = {
   showCroppingTools: true,
   showCoverSelectionUI: true,
   coverSelectionMode: "none", // User can choose
+  enablePreviewFlow: true, // Enable preview flow for cover selection
 }

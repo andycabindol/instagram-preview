@@ -4,3 +4,22 @@
   overflow-x: hidden;
 }
 
+/* Mobile styles */
+@media (max-width: 450px) {
+  #root{
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+  
+  .app-container {
+    width: 100vw !important;
+    max-width: initial !important;
+    /* overflow-y: hidden !important; */
+  }
+
+  .tab-bar {
+    width: 100vw !important;
+    max-width: initial !important;
+    height: 42px !important;
+  }
+}

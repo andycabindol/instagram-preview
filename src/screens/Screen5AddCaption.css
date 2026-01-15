@@ -5,7 +5,7 @@
   min-height: 100vh;
 }
 
-.nav-bar {
+.screen5-add-caption .nav-bar {
   background-color: #ffffff;
   display: flex;
   gap: 115px;
@@ -17,7 +17,7 @@
   width: 375px;
 }
 
-.back-button {
+.screen5-add-caption .back-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -27,7 +27,7 @@
   flex-shrink: 0;
 }
 
-.nav-title {
+.screen5-add-caption .nav-title {
   position: absolute;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
@@ -40,7 +40,7 @@
   transform: translate(-50%, -50%);
 }
 
-.content-section {
+.screen5-add-caption .content-section {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -50,7 +50,7 @@
   width: 375px;
 }
 
-.images-preview {
+.screen5-add-caption .images-preview {
   display: flex;
   gap: 12px;
   align-items: flex-start;
@@ -63,11 +63,11 @@
   -ms-overflow-style: none; /* IE and Edge */
 }
 
-.images-preview::-webkit-scrollbar {
+.screen5-add-caption .images-preview::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
 
-.preview-image {
+.screen5-add-caption .preview-image {
   height: 201px;
   border-radius: 12px;
   width: 200px;
@@ -76,19 +76,19 @@
   overflow: hidden;
 }
 
-.preview-image img {
+.screen5-add-caption .preview-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.overlay-image {
+.screen5-add-caption .overlay-image {
   position: absolute;
   inset: 0;
   opacity: 0.5;
 }
 
-.caption-section {
+.screen5-add-caption .caption-section {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -96,7 +96,7 @@
   width: 100%;
 }
 
-.caption-input {
+.screen5-add-caption .caption-input {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
@@ -111,17 +111,17 @@
   letter-spacing: 0.26px;
 }
 
-.caption-input::placeholder {
+.screen5-add-caption .caption-input::placeholder {
   color: rgba(12, 16, 20, 0.5);
 }
 
-.caption-buttons {
+.screen5-add-caption .caption-buttons {
   display: flex;
   gap: 8px;
   align-items: flex-start;
 }
 
-.caption-button {
+.screen5-add-caption .caption-button {
   background-color: #f3f4f6;
   border: none;
   border-radius: 6px;
@@ -133,13 +133,13 @@
   cursor: pointer;
 }
 
-.caption-button svg {
+.screen5-add-caption .caption-button svg {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.caption-button span {
+.screen5-add-caption .caption-button span {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 11px;
@@ -148,7 +148,7 @@
   letter-spacing: 0.22px;
 }
 
-.options-list {
+.screen5-add-caption .options-list {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -156,7 +156,7 @@
   width: 351px;
 }
 
-.option-item {
+.screen5-add-caption .option-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -164,20 +164,20 @@
   width: 351px;
 }
 
-.option-left {
+.screen5-add-caption .option-left {
   display: flex;
   gap: 8px;
   align-items: center;
   padding: 0;
 }
 
-.option-left svg {
+.screen5-add-caption .option-left svg {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
 }
 
-.option-left span {
+.screen5-add-caption .option-left span {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
@@ -189,13 +189,13 @@
   white-space: nowrap;
 }
 
-.option-right {
+.screen5-add-caption .option-right {
   display: flex;
   gap: 0;
   align-items: center;
 }
 
-.option-value {
+.screen5-add-caption .option-value {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
@@ -207,24 +207,24 @@
   white-space: nowrap;
 }
 
-.chevron {
+.screen5-add-caption .chevron {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
 }
 
-.chevron path {
+.screen5-add-caption .chevron path {
   stroke: #6f7680;
 }
 
-.divider {
+.screen5-add-caption .divider {
   background-color: #f3f4f6;
   height: 6px;
   width: 375px;
   flex-shrink: 0;
 }
 
-.bottom-toolbar {
+.screen5-add-caption .bottom-toolbar {
   position: fixed;
   background-color: #ffffff;
   border-top: 0.5px solid #dbdfe4;
@@ -243,7 +243,7 @@
   z-index: 1000;
 }
 
-.share-button {
+.screen5-add-caption .share-button {
   background-color: #8593ff;
   border: none;
   border-radius: 6px;
@@ -257,7 +257,7 @@
   cursor: pointer;
 }
 
-.share-button span {
+.screen5-add-caption .share-button span {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;

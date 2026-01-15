@@ -8,11 +8,11 @@
   min-height: 100vh;
 }
 
-.nav-bar {
+.screen3-multiselect .nav-bar {
   background-color: transparent !important;
 }
 
-.nav-bar-top {
+.screen3-multiselect .nav-bar-top {
   background-color: #0c1014;
   display: flex;
   height: 60px;
@@ -23,7 +23,7 @@
   position: relative;
 }
 
-.close-button {
+.screen3-multiselect .close-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -33,7 +33,7 @@
   flex-shrink: 0;
 }
 
-.nav-title {
+.screen3-multiselect .nav-title {
   position: absolute;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
@@ -46,14 +46,14 @@
   transform: translate(-50%, -50%);
 }
 
-.next-button {
+.screen3-multiselect .next-button {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
 }
 
-.next-button span {
+.screen3-multiselect .next-button span {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 15px;
@@ -62,14 +62,14 @@
   text-align: center;
 }
 
-.picture-preview {
+.screen3-multiselect .picture-preview {
   width: 375px;
   height: 375px;
   position: relative;
   overflow: hidden;
 }
 
-.picture-preview img {
+.screen3-multiselect .picture-preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -77,11 +77,11 @@
   inset: 0;
 }
 
-.preview-overlay {
+.screen3-multiselect .preview-overlay {
   opacity: 0.5;
 }
 
-.nav-bar-bottom {
+.screen3-multiselect .nav-bar-bottom {
   background-color: #0c1014;
   display: flex;
   height: 64px;
@@ -91,14 +91,14 @@
   width: 375px;
 }
 
-.recents-section {
+.screen3-multiselect .recents-section {
   display: flex;
   gap: 2px;
   align-items: center;
   justify-content: center;
 }
 
-.recents-text {
+.screen3-multiselect .recents-text {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 15px;
@@ -107,13 +107,13 @@
   text-align: center;
 }
 
-.chevron-right {
+.screen3-multiselect .chevron-right {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.gallery-button {
+.screen3-multiselect .gallery-button {
   background-color: #0c1014;
   border: 2px solid #0c1014;
   border-radius: 100px;
@@ -127,22 +127,22 @@
   transition: all 0.2s ease-in-out;
 }
 
-.gallery-button svg {
+.screen3-multiselect .gallery-button svg {
   stroke: #f7f9f9;
   transition: stroke 0.2s ease-in-out;
 }
 
-.gallery-button.active {
+.screen3-multiselect .gallery-button.active {
   background-color: #8593ff;
   border-color: #8593ff;
   box-shadow: 0 0 8px rgba(133, 147, 255, 0.5);
 }
 
-.gallery-button.active svg {
+.screen3-multiselect .gallery-button.active svg {
   stroke: #ffffff;
 }
 
-.image-grid {
+.screen3-multiselect .image-grid {
   background-color: #0c1014;
   display: flex;
   flex-wrap: wrap;
@@ -154,7 +154,7 @@
   width: 375px;
 }
 
-.camera-tile {
+.screen3-multiselect .camera-tile {
   background-color: #1e1e1e;
   width: calc((375px - 6px) / 4);
   height: calc((375px - 6px) / 4);
@@ -165,7 +165,7 @@
   flex-shrink: 0;
 }
 
-.image-tile {
+.screen3-multiselect .image-tile {
   width: calc((375px - 6px) / 4);
   height: calc((375px - 6px) / 4);
   position: relative;
@@ -178,7 +178,7 @@
   padding: 4px;
 }
 
-.image-tile img {
+.screen3-multiselect .image-tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -186,13 +186,13 @@
   inset: 0;
 }
 
-.image-tile.selected .overlay {
+.screen3-multiselect .image-tile.selected .overlay {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.selection-badge {
+.screen3-multiselect .selection-badge {
   background-color: #ffffff;
   border: 1px solid #ffffff;
   border-radius: 100px;
@@ -209,7 +209,7 @@
   z-index: 1;
 }
 
-.empty-badge {
+.screen3-multiselect .empty-badge {
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid #ffffff;
   border-radius: 100px;
@@ -219,3 +219,12 @@
   z-index: 1;
 }
 
+@media (max-width: 450px)  {
+
+  body.screen-3 {
+    background-color: #0c1014 !important;
+  }
+  .screen3-multiselect {
+    width: 100% !important;
+  }
+}

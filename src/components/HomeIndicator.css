@@ -19,3 +19,9 @@
   background-color: #ffffff;
 }
 
+/* Hide home indicator on mobile */
+@media (max-width: 768px) {
+  .app-container .home-indicator {
+    display: none;
+  }
+}

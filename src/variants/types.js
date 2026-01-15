@@ -13,6 +13,7 @@
  * @property {boolean} showEditToolbar - Whether to show the edit toolbar
  * @property {boolean} showCroppingTools - Whether to show cropping tools
  * @property {boolean} showCoverSelectionUI - Whether to show cover selection UI
+ * @property {boolean} enablePreviewFlow - Whether to enable the preview flow for cover selection (v2 only)
  */
 
 // Export for JSDoc reference (not used at runtime)

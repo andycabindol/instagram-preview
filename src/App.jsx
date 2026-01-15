@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import { VariantProvider } from './variants/VariantProvider'
+import { useState, useEffect } from 'react'
+import { VariantProvider, useVariant } from './variants/VariantProvider'
 import Screen1Feed from './screens/Screen1Feed'
 import Screen2ImageSelection from './screens/Screen2ImageSelection'
 import Screen3MultiSelect from './screens/Screen3MultiSelect'
 import Screen4EditPost from './screens/Screen4EditPost'
 import Screen5AddCaption from './screens/Screen5AddCaption'
 import Screen6Profile from './screens/Screen6Profile'
+import PreviewScreen from './screens/PreviewScreen'
 import './App.css'
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
   const [multiSelectMode, setMultiSelectMode] = useState(false)
   const [imagesForEdit, setImagesForEdit] = useState([])
   const [previousScreen, setPreviousScreen] = useState(2) // Track which screen we came from
+  const [showPreview, setShowPreview] = useState(false)
+  const [previewImages, setPreviewImages] = useState([])
   const [profilePosts, setProfilePosts] = useState([
     'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop',
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
@@ -150,8 +153,29 @@ function App() {
     navigateToScreen(4)
   }
 
-  const handleNextFromEdit = () => {
+  const handleNextFromEdit = (images) => {
+    // Update imagesForEdit if new order was passed
+    if (images && images.length > 0) {
+      setImagesForEdit(images)
+    }
     navigateToScreen(5)
+  }
+
+  const handleOpenPreview = (images) => {
+    setPreviewImages(images)
+    setShowPreview(true)
+  }
+
+  const handlePreviewDone = (reorderedImages) => {
+    setImagesForEdit(reorderedImages)
+    setShowPreview(false)
+    // Force re-render of Screen4EditPost with new images
+    setCurrentScreen(4)
+  }
+
+  const handlePreviewCancel = () => {
+    setShowPreview(false)
+    // Return to Screen4EditPost (images remain unchanged)
   }
 
   const handleShare = (images, caption) => {
@@ -184,16 +208,75 @@ function App() {
     navigateToScreen(1)
   }
 
+  // Set body class based on current screen
+  useEffect(() => {
+    const body = document.body
+    // Remove all screen classes
+    body.classList.remove('screen-1', 'screen-2', 'screen-3', 'screen-4', 'screen-5', 'screen-6', 'screen-preview')
+    
+    // Add class for current screen
+    if (currentScreen === 4 && showPreview) {
+      body.classList.add('screen-preview')
+    } else {
+      body.classList.add(`screen-${currentScreen}`)
+    }
+  }, [currentScreen, showPreview])
+
   return (
     <VariantProvider>
-      <div className="app-container">
-        {currentScreen === 1 && (
-          <Screen1Feed 
-            onPlusClick={handlePlusClick} 
-            posts={feedPosts}
-            onProfileClick={() => navigateToScreen(6)}
-          />
-        )}
+      <AppContent
+        currentScreen={currentScreen}
+        handlePlusClick={handlePlusClick}
+        feedPosts={feedPosts}
+        navigateToScreen={navigateToScreen}
+        handleNextFromSelection={handleNextFromSelection}
+        handleMultiSelectToggle={handleMultiSelectToggle}
+        multiSelectMode={multiSelectMode}
+        handleNextFromEdit={handleNextFromEdit}
+        imagesForEdit={imagesForEdit}
+        previousScreen={previousScreen}
+        showPreview={showPreview}
+        previewImages={previewImages}
+        handleOpenPreview={handleOpenPreview}
+        handlePreviewDone={handlePreviewDone}
+        handlePreviewCancel={handlePreviewCancel}
+        profilePosts={profilePosts}
+        handleShare={handleShare}
+      />
+    </VariantProvider>
+  )
+}
+
+function AppContent({
+  currentScreen,
+  handlePlusClick,
+  feedPosts,
+  navigateToScreen,
+  handleNextFromSelection,
+  handleMultiSelectToggle,
+  multiSelectMode,
+  handleNextFromEdit,
+  imagesForEdit,
+  previousScreen,
+  showPreview,
+  previewImages,
+  handleOpenPreview,
+  handlePreviewDone,
+  handlePreviewCancel,
+  profilePosts,
+  handleShare,
+}) {
+  const { variantId } = useVariant()
+
+  return (
+    <div className="app-container">
+      {currentScreen === 1 && (
+        <Screen1Feed 
+          onPlusClick={handlePlusClick} 
+          posts={feedPosts}
+          onProfileClick={() => navigateToScreen(6)}
+        />
+      )}
       {currentScreen === 2 && (
         <Screen2ImageSelection
           onClose={() => navigateToScreen(1)}
@@ -208,11 +291,21 @@ function App() {
           onNext={handleNextFromSelection}
         />
       )}
-      {currentScreen === 4 && (
+      {currentScreen === 4 && !showPreview && (
         <Screen4EditPost
           onClose={() => navigateToScreen(previousScreen)}
           onNext={handleNextFromEdit}
           images={imagesForEdit}
+          onOpenPreview={handleOpenPreview}
+        />
+      )}
+      {currentScreen === 4 && showPreview && (
+        <PreviewScreen
+          images={previewImages}
+          onCancel={handlePreviewCancel}
+          onDone={handlePreviewDone}
+          isMultiSelect={previewImages.length > 1}
+          profilePosts={profilePosts}
         />
       )}
       {currentScreen === 5 && (
@@ -225,8 +318,7 @@ function App() {
       {currentScreen === 6 && (
         <Screen6Profile onHomeClick={() => navigateToScreen(1)} postImages={profilePosts} />
       )}
-      </div>
-    </VariantProvider>
+    </div>
   )
 }
 

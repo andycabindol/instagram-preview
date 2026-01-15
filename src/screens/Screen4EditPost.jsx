@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useVariant } from '../variants/VariantProvider'
 import HomeIndicator from '../components/HomeIndicator'
+import PreviewButton from '../components/PreviewButton'
 import './Screen4EditPost.css'
 
-function Screen4EditPost({ onClose, onNext, images = [] }) {
+function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
   const { config } = useVariant()
+  const [currentImages, setCurrentImages] = useState([...images])
+
+  // Sync with prop changes (e.g., when preview updates images)
+  useEffect(() => {
+    setCurrentImages([...images])
+  }, [images])
+
+  // Store snapshot when opening preview
+  const handleOpenPreview = () => {
+    onOpenPreview(currentImages)
+  }
   return (
     <div className="screen4-edit-post">
       {/* Navigation Bar */}
@@ -19,9 +31,9 @@ function Screen4EditPost({ onClose, onNext, images = [] }) {
       </div>
 
       {/* Image Carousel */}
-      <div className="image-carousel">
-        {images.length > 0 ? (
-          images.map((imgSrc, index) => (
+      <div className={`image-carousel ${currentImages.length === 1 ? 'single-image' : ''}`}>
+        {currentImages.length > 0 ? (
+          currentImages.map((imgSrc, index) => (
             <div key={index} className="carousel-image">
               <img src={imgSrc} alt={`Post ${index + 1}`} />
             </div>
@@ -111,14 +123,17 @@ function Screen4EditPost({ onClose, onNext, images = [] }) {
       <div className="toolbar-edit-post">
         <div className="edit-toolbar">
           <div className="add-image-button">
-            <img src={images.length > 0 ? images[0] : "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop"} alt="Thumbnail" />
+            <img src={currentImages.length > 0 ? currentImages[0] : "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop"} alt="Thumbnail" />
             <div className="add-overlay">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                 <path d="M12 5v14M5 12h14" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             </div>
           </div>
-          <button className="next-button-large" onClick={onNext}>
+          {config.enablePreviewFlow && (
+            <PreviewButton onClick={handleOpenPreview} />
+          )}
+          <button className="next-button-large" onClick={() => onNext(currentImages)}>
             <span>Next</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 4l4 4-4 4" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

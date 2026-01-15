@@ -1,3 +1,4 @@
+
 .screen6-profile {
   background-color: #ffffff;
   display: flex;
@@ -8,7 +9,7 @@
   min-height: 100vh;
 }
 
-.nav-bar {
+.screen6-profile .nav-bar {
   background-color: #ffffff;
   display: flex;
   align-items: flex-start;
@@ -17,13 +18,13 @@
   width: 375px;
 }
 
-.nav-headline {
+.screen6-profile .nav-headline {
   display: flex;
   gap: 2px;
   align-items: center;
 }
 
-.username {
+.screen6-profile .username {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 21px;
@@ -32,20 +33,20 @@
   letter-spacing: 0.21px;
 }
 
-.chevron-down {
+.screen6-profile .chevron-down {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.nav-actions {
+.screen6-profile .nav-actions {
   display: flex;
   gap: 16px;
   align-items: flex-start;
   position: relative;
 }
 
-.notification-badge {
+.screen6-profile .notification-badge {
   position: absolute;
   background-color: #ff0034;
   border-radius: 16px;
@@ -59,7 +60,7 @@
   padding: 0 6px;
 }
 
-.notification-badge::before {
+.screen6-profile .notification-badge::before {
   content: '1';
   font-family: 'Inter', sans-serif;
   font-weight: 600;
@@ -69,7 +70,7 @@
   letter-spacing: 0.4px;
 }
 
-.profile-info {
+.screen6-profile .profile-info {
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -78,20 +79,20 @@
   width: 375px;
 }
 
-.profile-picture-section {
+.screen6-profile .profile-picture-section {
   position: relative;
   width: 86px;
   height: 86px;
   flex-shrink: 0;
 }
 
-.profile-picture {
+.screen6-profile .profile-picture {
   position: relative;
   width: 86px;
   height: 86px;
 }
 
-.profile-picture img {
+.screen6-profile .profile-picture img {
   width: 100%;
   height: 100%;
   border-radius: 100px;
@@ -99,7 +100,7 @@
   object-fit: cover;
 }
 
-.note-badge {
+.screen6-profile .note-badge {
   position: absolute;
   height: 40.5px;
   left: 9px;
@@ -112,7 +113,7 @@
   justify-content: center;
 }
 
-.note-badge span {
+.screen6-profile .note-badge span {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 12px;
@@ -121,7 +122,7 @@
   letter-spacing: 0.24px;
 }
 
-.add-story-badge {
+.screen6-profile .add-story-badge {
   position: absolute;
   bottom: 7px;
   right: 7px;
@@ -135,7 +136,7 @@
   justify-content: center;
 }
 
-.profile-stats {
+.screen6-profile .profile-stats {
   height: 31px;
   width: 220px;
   display: flex;
@@ -143,7 +144,7 @@
   align-items: center;
 }
 
-.stat-item {
+.screen6-profile .stat-item {
   display: flex;
   flex-direction: column;
   height: 30px;
@@ -151,7 +152,7 @@
   text-align: center;
 }
 
-.stat-number {
+.screen6-profile .stat-number {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 14px;
@@ -160,7 +161,7 @@
   letter-spacing: 0.14px;
 }
 
-.stat-label {
+.screen6-profile .stat-label {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
@@ -169,21 +170,21 @@
   letter-spacing: 0.26px;
 }
 
-.stat-item:nth-child(1) {
+.screen6-profile .stat-item:nth-child(1) {
   width: 32px;
 }
 
-.stat-item:nth-child(2) {
+.screen6-profile .stat-item:nth-child(2) {
   width: 51px;
   margin-left: 47px;
 }
 
-.stat-item:nth-child(3) {
+.screen6-profile .stat-item:nth-child(3) {
   width: 51px;
   margin-left: 49px;
 }
 
-.bio-section {
+.screen6-profile .bio-section {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -193,7 +194,7 @@
   width: 375px;
 }
 
-.bio-name {
+.screen6-profile .bio-name {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -203,7 +204,7 @@
   width: 100%;
 }
 
-.bio-buttons {
+.screen6-profile .bio-buttons {
   display: flex;
   gap: 0;
   align-items: flex-start;
@@ -211,7 +212,7 @@
   width: 100%;
 }
 
-.threads-badge {
+.screen6-profile .threads-badge {
   background-color: #f3f4f6;
   border-radius: 100px;
   display: flex;
@@ -221,13 +222,13 @@
   height: 24px;
 }
 
-.threads-badge svg {
+.screen6-profile .threads-badge svg {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.threads-badge span {
+.screen6-profile .threads-badge span {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 11px;
@@ -236,11 +237,11 @@
   letter-spacing: 0.33px;
 }
 
-.threads-new {
+.screen6-profile .threads-new {
   color: #0c1014;
 }
 
-.threads-dot {
+.screen6-profile .threads-dot {
   background-color: #4a5df9;
   border-radius: 100px;
   width: 5px;
@@ -248,7 +249,7 @@
   flex-shrink: 0;
 }
 
-.bio-details {
+.screen6-profile .bio-details {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -257,7 +258,7 @@
   width: 100%;
 }
 
-.bio-text {
+.screen6-profile .bio-text {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 13px;
@@ -267,28 +268,28 @@
   width: 100%;
 }
 
-.bio-subtitle {
+.screen6-profile .bio-subtitle {
   color: #6f7680;
 }
 
-.hashtag {
+.screen6-profile .hashtag {
   color: #a7dcff;
 }
 
-.bio-link {
+.screen6-profile .bio-link {
   display: flex;
   gap: 4px;
   align-items: center;
   padding: 0;
 }
 
-.bio-link svg {
+.screen6-profile .bio-link svg {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.link-text {
+.screen6-profile .link-text {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -297,7 +298,7 @@
   letter-spacing: 0.13px;
 }
 
-.action-buttons {
+.screen6-profile .action-buttons {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -306,14 +307,14 @@
   width: 375px;
 }
 
-.dashboard-card {
+.screen6-profile .dashboard-card {
   background-color: #f3f4f6;
   border-radius: 6px;
   padding: 12px;
   width: 100%;
 }
 
-.dashboard-card h3 {
+.screen6-profile .dashboard-card h3 {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -323,7 +324,7 @@
   margin-bottom: 4px;
 }
 
-.dashboard-card p {
+.screen6-profile .dashboard-card p {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 11px;
@@ -332,14 +333,14 @@
   letter-spacing: 0.33px;
 }
 
-.button-row {
+.screen6-profile .button-row {
   display: flex;
   gap: 4px;
   align-items: flex-start;
   width: 100%;
 }
 
-.action-button {
+.screen6-profile .action-button {
   background-color: #f3f4f6;
   border: none;
   border-radius: 6px;
@@ -353,7 +354,7 @@
   cursor: pointer;
 }
 
-.action-button {
+.screen6-profile .action-button {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -363,7 +364,7 @@
   letter-spacing: 0.13px;
 }
 
-.highlights-section {
+.screen6-profile .highlights-section {
   background-color: #ffffff;
   display: flex;
   gap: 16px;
@@ -373,7 +374,7 @@
   width: 375px;
 }
 
-.highlight-item {
+.screen6-profile .highlight-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -382,7 +383,7 @@
   min-width: 56px;
 }
 
-.highlight-circle {
+.screen6-profile .highlight-circle {
   border: 3px solid #ffffff;
   border-radius: 100px;
   width: 56px;
@@ -391,13 +392,13 @@
   position: relative;
 }
 
-.highlight-circle img {
+.screen6-profile .highlight-circle img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.highlight-circle.new {
+.screen6-profile .highlight-circle.new {
   border: 2px solid #dbdfe4;
   display: flex;
   align-items: center;
@@ -405,7 +406,7 @@
   background: transparent;
 }
 
-.highlight-label {
+.screen6-profile .highlight-label {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 11px;
@@ -416,7 +417,7 @@
   min-width: 100%;
 }
 
-.post-grid-section {
+.screen6-profile .post-grid-section {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -424,7 +425,7 @@
   width: 375px;
 }
 
-.profile-tabs {
+.screen6-profile .profile-tabs {
   background-color: #ffffff;
   border-bottom: 0.5px solid #dbdfe4;
   display: flex;
@@ -434,7 +435,7 @@
   width: 375px;
 }
 
-.profile-tabs .tab {
+.screen6-profile .profile-tabs .tab {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -444,16 +445,16 @@
   padding: 8px 0 0 0;
 }
 
-.profile-tabs .tab.active {
+.screen6-profile .profile-tabs .tab.active {
   border-bottom: 1px solid #0c1014;
 }
 
-.profile-tabs .tab svg {
+.screen6-profile .profile-tabs .tab svg {
   width: 24px;
   height: 24px;
 }
 
-.post-grid {
+.screen6-profile .post-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 1px;
@@ -462,24 +463,24 @@
   width: 375px;
 }
 
-.post-grid-item {
+.screen6-profile .post-grid-item {
   width: calc((375px - 2px) / 3);
   height: calc((375px - 2px) / 3);
   position: relative;
   overflow: hidden;
 }
 
-.post-grid-item img {
+.screen6-profile .post-grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.post-grid-item.pinned {
+.screen6-profile .post-grid-item.pinned {
   position: relative;
 }
 
-.pinned-badge {
+.screen6-profile .pinned-badge {
   position: absolute;
   height: 21.419px;
   right: 10.71px;
@@ -489,7 +490,7 @@
   z-index: 1;
 }
 
-.tab-bar {
+.screen6-profile .tab-bar {
   position: fixed;
   background-color: #ffffff;
   border-top: 0.5px solid #dbdfe4;
@@ -506,16 +507,53 @@
   max-width: 375px;
 }
 
-@media (max-width: 375px) {
-  .tab-bar {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
-    max-width: 375px;
+@media (max-width: 450px)  {
+
+  body.screen-6 {
+    background-color: #ffffff !important;
   }
+  .screen6-profile {
+    width: 100%;
+  }
+
+  .action-buttons {
+    width: 100%;
+  }
+
+  .profile-info {
+    width: 100%;
+  }
+
+  .bio-section {
+    width: 100%;
+  }
+
+  .highlights-section{
+    width: 100%;
+  }
+
+  .post-grid-section {
+    width: 100%;
+  }
+
+  .profile-tabs {
+    width: 100%;
+  }
+
+  .post-grid {
+    width: 100%;
+  }
+
+  .post-grid-item{
+    width: calc((100vw - 2px) / 3);
+    height: calc((100vw - 2px) / 3);
+  }
+  
+
+
 }
 
-.tabs {
+.screen6-profile .tabs {
   display: flex;
   gap: 0;
   flex: 1;
@@ -524,7 +562,7 @@
   width: 100%;
 }
 
-.tab {
+.screen6-profile .tab {
   display: flex;
   gap: 0;
   height: 51px;
@@ -536,12 +574,12 @@
   cursor: pointer;
 }
 
-.tab svg {
+.screen6-profile .tab svg {
   width: 24px;
   height: 24px;
 }
 
-.tab-indicator {
+.screen6-profile .tab-indicator {
   position: absolute;
   background-color: #ff0034;
   border-radius: 100px;
@@ -552,13 +590,13 @@
   transform: translateX(-50%);
 }
 
-.profile-tab-avatar {
+.screen6-profile .profile-tab-avatar {
   width: 24px;
   height: 24px;
   position: relative;
 }
 
-.profile-tab-avatar img {
+.screen6-profile .profile-tab-avatar img {
   width: 22px;
   height: 22px;
   border-radius: 100px;
@@ -570,7 +608,7 @@
   transform: translate(-50%, -50%);
 }
 
-.profile-tab-avatar::before {
+.screen6-profile .profile-tab-avatar::before {
   content: '';
   position: absolute;
   width: 22px;

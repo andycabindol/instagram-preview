@@ -11,4 +11,5 @@ export const prodConfig = {
   showEditToolbar: true,
   showCroppingTools: false,
   showCoverSelectionUI: false,
+  enablePreviewFlow: false,
 }

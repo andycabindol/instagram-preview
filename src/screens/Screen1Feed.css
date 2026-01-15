@@ -16,7 +16,7 @@
 }
 
 /* Top Bar (StatusBar + NavBar) */
-.top-bar {
+.screen1-feed .top-bar {
   position: sticky;
   top: 0;
   z-index: 10;
@@ -25,7 +25,7 @@
 }
 
 /* Variant Badge */
-.variant-badge {
+.screen1-feed .variant-badge {
   position: absolute;
   top: 8px;
   right: 16px;
@@ -40,19 +40,19 @@
   pointer-events: none;
 }
 
-.variant-badge-v1 {
+.screen1-feed .variant-badge-v1 {
   background-color: #e74c3c; /* Red */
 }
 
-.variant-badge-v2 {
+.screen1-feed .variant-badge-v2 {
   background-color: #3498db; /* Blue */
 }
 
-.variant-badge-v3 {
+.screen1-feed .variant-badge-v3 {
   background-color: #2ecc71; /* Green */
 }
 
-.variant-badge-v4 {
+.screen1-feed .variant-badge-v4 {
   background-color: #f39c12; /* Orange */
 }
 
@@ -61,7 +61,7 @@
 } */
 
 /* Navigation Bar */
-.nav-bar {
+.screen1-feed .nav-bar {
   top: 0 !important;
   background-color: #ffffff;
   gap: initial !important;
@@ -77,7 +77,7 @@
   right: 0 !important;
 }
 
-.plus-button {
+.screen1-feed .plus-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -90,22 +90,22 @@
   transition: opacity 0.2s;
 }
 
-.plus-button:hover {
+.screen1-feed .plus-button:hover {
   opacity: 0.7;
 }
 
-.plus-button:active {
+.screen1-feed .plus-button:active {
   opacity: 0.5;
 }
 
-.nav-headline {
+.screen1-feed .nav-headline {
   display: flex;
   gap: 2px;
   align-items: center;
   position: relative;
 }
 
-.prototype-menu {
+.screen1-feed .prototype-menu {
   position: absolute;
   top: calc(100% + 8px);
   left: 50%;
@@ -119,7 +119,7 @@
   border: 1px solid #dbdfe4;
 }
 
-.prototype-menu-item {
+.screen1-feed .prototype-menu-item {
   padding: 12px 16px;
   cursor: pointer;
   display: flex;
@@ -131,40 +131,40 @@
   transition: background-color 0.2s;
 }
 
-.prototype-menu-item:hover {
+.screen1-feed .prototype-menu-item:hover {
   background-color: #f5f5f5;
 }
 
-.prototype-menu-item.active {
+.screen1-feed .prototype-menu-item.active {
   background-color: #f0f0f0;
   font-weight: 600;
 }
 
-.prototype-menu-item .check {
+.screen1-feed .prototype-menu-item .check {
   color: #0098fd;
   font-weight: bold;
   margin-left: 8px;
 }
 
-.instagram-logo {
+.screen1-feed .instagram-logo {
   height: 29px;
   width: 101px;
   object-fit: cover;
 }
 
-.chevron-down {
+.screen1-feed .chevron-down {
   width: 16px;
   height: 16px;
 }
 
-.nav-action {
+.screen1-feed .nav-action {
   display: flex;
   gap: 16px;
   align-items: flex-start;
 }
 
 /* Stories Section */
-.stories-section {
+.screen1-feed .stories-section {
   background-color: #ffffff;
   border-bottom: 0.5px solid #dbdfe4;
   display: flex;
@@ -177,7 +177,7 @@
   flex-shrink: 0;
 }
 
-.story-item {
+.screen1-feed .story-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -186,27 +186,27 @@
   min-width: 78px;
 }
 
-.story-picture {
+.screen1-feed .story-picture {
   position: relative;
   width: 78px;
   height: 78px;
   flex-shrink: 0;
 }
 
-.story-avatar {
+.screen1-feed .story-avatar {
   position: absolute;
   inset: 6.41%;
   overflow: hidden;
   border-radius: 100px;
 }
 
-.story-avatar img {
+.screen1-feed .story-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.story-add-badge {
+.screen1-feed .story-add-badge {
   position: absolute;
   bottom: 5px;
   right: 5px;
@@ -220,7 +220,7 @@
   justify-content: center;
 }
 
-.story-label {
+.screen1-feed .story-label {
   font-family: 'SF Pro Display', sans-serif;
   font-weight: 400;
   font-size: 11px;
@@ -230,12 +230,12 @@
   letter-spacing: 0.33px;
 }
 
-.my-story .story-label {
+.screen1-feed .my-story .story-label {
   color: #6f7680;
 }
 
 /* Posts Container */
-.posts-container {
+.screen1-feed .posts-container {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -246,7 +246,7 @@
 }
 
 /* Post Section */
-.post-section {
+.screen1-feed .post-section {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -255,7 +255,7 @@
   margin-bottom: 0;
 }
 
-.post-header {
+.screen1-feed .post-header {
   border-bottom: 0.5px solid #dbdfe4;
   display: flex;
   gap: 8px;
@@ -265,7 +265,7 @@
   width: 375px;
 }
 
-.post-user-info {
+.screen1-feed .post-user-info {
   display: flex;
   gap: 0;
   flex: 1;
@@ -273,14 +273,14 @@
   min-width: 0;
 }
 
-.user-avatar {
+.screen1-feed .user-avatar {
   width: 34px;
   height: 34px;
   flex-shrink: 0;
   position: relative;
 }
 
-.user-avatar img {
+.screen1-feed .user-avatar img {
   width: 100%;
   height: 100%;
   border-radius: 100px;
@@ -288,7 +288,7 @@
   object-fit: cover;
 }
 
-.user-details {
+.screen1-feed .user-details {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -297,14 +297,14 @@
   padding: 0 0 2px 8px;
 }
 
-.user-name-row {
+.screen1-feed .user-name-row {
   display: flex;
   gap: 0;
   align-items: center;
   padding: 2px 0 0 0;
 }
 
-.user-name {
+.screen1-feed .user-name {
   font-family: 'SF Pro Display', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -313,13 +313,13 @@
   letter-spacing: 0.13px;
 }
 
-.verified-badge {
+.screen1-feed .verified-badge {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.options-button {
+.screen1-feed .options-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -329,21 +329,21 @@
   flex-shrink: 0;
 }
 
-.post-image {
+.screen1-feed .post-image {
   width: 375px;
   height: 375px;
   overflow: hidden;
   position: relative;
 }
 
-.post-image img {
+.screen1-feed .post-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.post-details {
+.screen1-feed .post-details {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -354,7 +354,7 @@
   width: 375px;
 }
 
-.action-bar {
+.screen1-feed .action-bar {
   display: flex;
   gap: 0;
   align-items: center;
@@ -363,7 +363,7 @@
   width: 100%;
 }
 
-.actions-left {
+.screen1-feed .actions-left {
   display: flex;
   gap: 12px;
   flex: 1;
@@ -371,19 +371,19 @@
   min-width: 0;
 }
 
-.action-item {
+.screen1-feed .action-item {
   display: flex;
   gap: 4px;
   align-items: center;
 }
 
-.action-icon {
+.screen1-feed .action-icon {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
 }
 
-.action-count {
+.screen1-feed .action-count {
   font-family: 'SF Pro Display', sans-serif;
   font-weight: 600;
   font-size: 12px;
@@ -392,7 +392,7 @@
   letter-spacing: 0.24px;
 }
 
-.action-right {
+.screen1-feed .action-right {
   display: flex;
   flex: 1;
   align-items: center;
@@ -400,7 +400,7 @@
   min-width: 0;
 }
 
-.likes-section {
+.screen1-feed .likes-section {
   display: flex;
   gap: 4px;
   align-items: center;
@@ -409,7 +409,7 @@
   overflow: visible;
 }
 
-.liker-avatars {
+.screen1-feed .liker-avatars {
   display: flex;
   gap: -5px;
   align-items: center;
@@ -417,7 +417,7 @@
   padding: 2px 5px 2px 0;
 }
 
-.liker-avatar {
+.screen1-feed .liker-avatar {
   width: 16px;
   height: 16px;
   border-radius: 100px;
@@ -430,14 +430,14 @@
   justify-content: center;
 }
 
-.liker-avatar img {
+.screen1-feed .liker-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.likes-text {
+.screen1-feed .likes-text {
   display: flex;
   gap: 2px;
   flex: 1;
@@ -451,12 +451,12 @@
   min-width: 0;
 }
 
-.likes-text strong {
+.screen1-feed .likes-text strong {
   font-weight: 600;
   letter-spacing: 0.13px;
 }
 
-.post-description {
+.screen1-feed .post-description {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -465,7 +465,7 @@
   width: 100%;
 }
 
-.description-line {
+.screen1-feed .description-line {
   display: flex;
   gap: 4px;
   align-items: flex-start;
@@ -478,17 +478,17 @@
   width: 100%;
 }
 
-.description-line strong {
+.screen1-feed .description-line strong {
   font-weight: 600;
   letter-spacing: 0.13px;
 }
 
-.more-link {
+.screen1-feed .more-link {
   color: #6f7680;
   flex-shrink: 0;
 }
 
-.post-comment {
+.screen1-feed .post-comment {
   display: flex;
   gap: 4px;
   align-items: flex-start;
@@ -496,7 +496,7 @@
   width: 100%;
 }
 
-.post-comment strong {
+.screen1-feed .post-comment strong {
   font-family: 'SF Pro Display', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -506,7 +506,7 @@
   flex-shrink: 0;
 }
 
-.post-comment span {
+.screen1-feed .post-comment span {
   font-family: 'SF Pro Display', sans-serif;
   font-weight: 400;
   font-size: 13px;
@@ -517,13 +517,13 @@
   min-width: 0;
 }
 
-.comment-like {
+.screen1-feed .comment-like {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
-.post-time {
+.screen1-feed .post-time {
   font-family: 'SF Pro Display', sans-serif;
   font-weight: 400;
   font-size: 11px;
@@ -534,7 +534,7 @@
 }
 
 /* Tab Bar */
-.tab-bar {
+.screen1-feed .tab-bar {
   position: fixed;
   background-color: #ffffff;
   border-top: 0.5px solid #dbdfe4;
@@ -550,16 +550,18 @@
   max-width: 375px;
 }
 
-@media (max-width: 375px) {
-  .tab-bar {
+@media (max-width: 375px)  {
+
+  .screen1-feed .tab-bar {
     left: 0;
     margin-left: 0;
     width: 100vw;
     max-width: 375px;
-  }
+  
+}
 }
 
-.tabs {
+.screen1-feed .tabs {
   display: flex;
   gap: 0;
   flex: 1;
@@ -568,7 +570,7 @@
   width: 100%;
 }
 
-.tab {
+.screen1-feed .tab {
   display: flex;
   gap: 0;
   height: 51px;
@@ -578,18 +580,18 @@
   width: 75px;
 }
 
-.tab svg {
+.screen1-feed .tab svg {
   width: 24px;
   height: 24px;
 }
 
-.profile-tab-avatar {
+.screen1-feed .profile-tab-avatar {
   width: 24px;
   height: 24px;
   position: relative;
 }
 
-.profile-tab-avatar img {
+.screen1-feed .profile-tab-avatar img {
   width: 22px;
   height: 22px;
   border-radius: 100px;
@@ -601,3 +603,42 @@
   transform: translate(-50%, -50%);
 }
 
+/* Mobile styles */
+@media (max-width: 450px) {
+  .screen1-feed {
+    width: 100%;
+  }
+
+  .screen1-feed .nav-bar {
+    width: 100vw !important;
+  }
+
+  .screen1-feed .posts-container{
+    width: 100vw;
+  }
+
+  .screen1-feed .post-section{
+    width: 100%;
+  }
+
+  .screen1-feed .post-header{
+    width: 100%;
+  }
+
+  .screen1-feed .post-image{
+    width: 100%;
+    height: auto;
+  }
+
+  .screen1-feed .stories-section{
+    width: 100vw;
+  }
+
+  .screen1-feed .post-details {
+    width: 100%;
+  }
+
+  .screen1-feed .action-bar {
+    width: 100% !important;
+  }
+}

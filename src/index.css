@@ -9,6 +9,36 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+/* Screen-specific body background colors */
+body.screen-1 {
+  background-color: #ffffff;
+}
+
+body.screen-2 {
+  background-color: #0c1014;
+}
+
+body.screen-3 {
+  background-color: #0c1014;
+}
+
+body.screen-4 {
+  background-color: #0c1014;
+}
+
+body.screen-5 {
+  background-color: #ffffff;
+}
+
+body.screen-6 {
+  background-color: #ffffff;
+}
+
+body.screen-preview {
+  background-color: #0c1014;
 }
 
 #root {
@@ -20,6 +50,23 @@ body {
   padding: 20px;
 }
 
+/* Remove root padding on mobile */
+@media (max-width: 450px) {
+  #root {
+    padding: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+
+  .app-container{
+    width: 100vw !important;
+    max-width: initial !important;
+    height: 100vh !important;
+  }
+}
+
+
+
 .app-container {
   max-width: 375px;
   width: 100%;
@@ -29,3 +76,9 @@ body {
   overflow-x: hidden;
 }
 
+/* Remove max-width on mobile */
+/* @media (max-width: 768px) {
+  .app-container {
+    max-width: none;
+  }
+} */
