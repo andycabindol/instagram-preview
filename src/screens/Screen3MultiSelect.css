@@ -8,6 +8,10 @@
   min-height: 100vh;
 }
 
+.nav-bar {
+  background-color: transparent !important;
+}
+
 .nav-bar-top {
   background-color: #0c1014;
   display: flex;
