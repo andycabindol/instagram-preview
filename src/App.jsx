@@ -312,6 +312,7 @@ function AppContent({
         <Screen3MultiSelect
           onClose={() => navigateToScreen(1)}
           onNext={handleNextFromSelection}
+          profilePosts={profilePosts}
         />
       )}
       {currentScreen === 4 && !showPreview && (
@@ -320,6 +321,7 @@ function AppContent({
           onNext={handleNextFromEdit}
           images={imagesForEdit}
           onOpenPreview={handleOpenPreview}
+          profilePosts={profilePosts}
         />
       )}
       {currentScreen === 4 && showPreview && (

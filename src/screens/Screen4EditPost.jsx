@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useVariant } from '../variants/VariantProvider'
 import HomeIndicator from '../components/HomeIndicator'
 import PreviewButton from '../components/PreviewButton'
+import ProfilePreviewScreenV3 from './ProfilePreviewScreenV3'
 import './Screen4EditPost.css'
 
-function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
-  const { config } = useVariant()
+function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview, profilePosts = [] }) {
+  const { config, isVariant } = useVariant()
+  const isV3 = isVariant('v3')
   const [currentImages, setCurrentImages] = useState([...images])
+  const [showProfilePreview, setShowProfilePreview] = useState(false)
+  const [originalImageOrder, setOriginalImageOrder] = useState([])
 
   // Sync with prop changes (e.g., when preview updates images)
   useEffect(() => {
@@ -16,6 +20,21 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
   // Store snapshot when opening preview
   const handleOpenPreview = () => {
     onOpenPreview(currentImages)
+  }
+
+  // Handle v3 profile preview
+  const handleOpenProfilePreview = () => {
+    setOriginalImageOrder([...currentImages])
+    setShowProfilePreview(true)
+  }
+
+  const handleProfilePreviewDone = (reorderedImages) => {
+    setCurrentImages(reorderedImages)
+    setShowProfilePreview(false)
+  }
+
+  const handleProfilePreviewCancel = () => {
+    setShowProfilePreview(false)
   }
   return (
     <div className="screen4-edit-post">
@@ -132,7 +151,18 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
                 </svg>
               </div>
             </div>
-            {config.enablePreviewFlow && (
+            {isV3 && (
+              <button className="preview-profile-button-v3-toolbar" onClick={handleOpenProfilePreview}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="3" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+                  <rect x="14" y="3" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+                  <rect x="3" y="14" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+                  <rect x="14" y="14" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+                </svg>
+                <span>Preview</span>
+              </button>
+            )}
+            {config.enablePreviewFlow && !isV3 && (
               <PreviewButton onClick={handleOpenPreview} />
             )}
             <button className="next-button-large" onClick={() => onNext(currentImages)}>
@@ -145,6 +175,16 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
           <HomeIndicator dark />
         </div>
       </div>
+
+      {/* Profile Preview Screen - V3 Only */}
+      {isV3 && showProfilePreview && (
+        <ProfilePreviewScreenV3
+          images={currentImages}
+          profilePosts={profilePosts}
+          onClose={handleProfilePreviewCancel}
+          onDone={handleProfilePreviewDone}
+        />
+      )}
     </div>
   )
 }

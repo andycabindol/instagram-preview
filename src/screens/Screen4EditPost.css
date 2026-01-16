@@ -163,6 +163,45 @@
   transform: translateX(-50%);
 }
 
+/* V3 Preview Button in Toolbar */
+.screen4-edit-post .preview-profile-button-v3-toolbar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #212223;
+  border: 1px solid #25292e;
+  border-radius: 8px;
+  display: flex;
+  gap: 6px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.screen4-edit-post .preview-profile-button-v3-toolbar:hover {
+  background-color: #2a2d2f;
+  border-color: #4a5df9;
+}
+
+.screen4-edit-post .preview-profile-button-v3-toolbar svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.screen4-edit-post .preview-profile-button-v3-toolbar span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: normal;
+  color: #f7f9f9;
+  text-align: center;
+}
+
 .screen4-edit-post .edit-toolbar .next-button-large {
   margin-left: auto;
   flex-shrink: 0;

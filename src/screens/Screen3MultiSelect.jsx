@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
+import { useVariant } from '../variants/VariantProvider'
+import ProfilePreviewScreenV3 from './ProfilePreviewScreenV3'
 import './Screen3MultiSelect.css'
 
-function Screen3MultiSelect({ onClose, onNext }) {
+function Screen3MultiSelect({ onClose, onNext, profilePosts = [] }) {
+  const { isVariant } = useVariant()
+  const isV3 = isVariant('v3')
   const [selectedImages, setSelectedImages] = useState([0, 1])
+  const [showProfilePreview, setShowProfilePreview] = useState(false)
+  const [originalImageOrder, setOriginalImageOrder] = useState([])
   
   const images = [
     'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop',
@@ -24,6 +30,25 @@ function Screen3MultiSelect({ onClose, onNext }) {
     } else {
       setSelectedImages([...selectedImages, index])
     }
+  }
+
+  const handleOpenProfilePreview = () => {
+    // Store original order
+    const currentOrder = selectedImages.map(idx => images[idx])
+    setOriginalImageOrder([...currentOrder])
+    setShowProfilePreview(true)
+  }
+
+  const handleProfilePreviewDone = (reorderedImages) => {
+    // Update selected images order based on reordered images
+    const newIndices = reorderedImages.map(img => images.indexOf(img))
+    setSelectedImages(newIndices.filter(idx => idx !== -1))
+    setShowProfilePreview(false)
+  }
+
+  const handleProfilePreviewCancel = () => {
+    // Restore original order
+    setShowProfilePreview(false)
   }
 
   return (
@@ -100,6 +125,29 @@ function Screen3MultiSelect({ onClose, onNext }) {
           )
         })}
       </div>
+
+      {/* Preview Button - V3 Only */}
+      {isV3 && selectedImages.length > 0 && (
+        <button className="preview-profile-button-v3" onClick={handleOpenProfilePreview}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+            <rect x="14" y="3" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+            <rect x="3" y="14" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+            <rect x="14" y="14" width="7" height="7" stroke="#f7f9f9" strokeWidth="1.5" fill="none"/>
+          </svg>
+          <span>Preview on Profile</span>
+        </button>
+      )}
+
+      {/* Profile Preview Screen - V3 Only */}
+      {isV3 && showProfilePreview && (
+        <ProfilePreviewScreenV3
+          images={selectedImages.map(idx => images[idx])}
+          profilePosts={profilePosts}
+          onClose={handleProfilePreviewCancel}
+          onDone={handleProfilePreviewDone}
+        />
+      )}
     </div>
   )
 }
