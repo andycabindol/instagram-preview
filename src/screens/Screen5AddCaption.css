@@ -17,6 +17,15 @@
   width: 375px;
 }
 
+/* Prod: Make nav-bar position relative and center nav-title */
+.screen5-add-caption .nav-bar {
+  position: relative;
+  left: 0;
+  top: 0;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
 .screen5-add-caption .back-button {
   background: none;
   border: none;
@@ -38,6 +47,14 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* Prod: Center nav-title within relative nav-bar */
+.screen5-add-caption .nav-bar.prod .nav-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
 }
 
 .screen5-add-caption .content-section {
@@ -232,11 +249,11 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 91px;
+  /* height: 91px; */
   align-items: center;
   justify-content: flex-end;
   left: 50%;
-  padding: 16px 0 0 0;
+  padding: 16px 0 8px 0;
   transform: translateX(-50%);
   width: 375px;
   max-width: 375px;
@@ -307,5 +324,32 @@
   color: #0c1014;
   text-align: center;
   letter-spacing: 0.13px;
+}
+
+@media screen and (max-width: 450px) {
+  .screen5-add-caption{
+    width: 100%;
+  }
+
+  .screen5-add-caption .nav-bar{
+    width: 100%;
+  }
+
+  .screen5-add-caption .content-section{
+    width: 100%;
+  }
+
+  .screen5-add-caption .options-list{
+    width: 100%;
+  } 
+
+  .screen5-add-caption .option-item{
+    width: 100%;
+  }
+
+  .screen5-add-caption .bottom-toolbar{
+    max-width: initial;
+    width: 100%;
+  }
 }
 

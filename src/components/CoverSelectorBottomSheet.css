@@ -136,3 +136,17 @@
   color: #ffffff;
   text-align: center;
 }
+
+/* v2 Light Mode Styles */
+.cover-selector-bottom-sheet.v2 {
+  background-color: #ffffff;
+  border-top: 1px solid #dbdfe4;
+}
+
+.cover-selector-bottom-sheet.v2 .cover-selector-title {
+  color: #0c1014;
+}
+
+.cover-selector-bottom-sheet.v2 .cover-selector-thumbnails::-webkit-scrollbar-track {
+  background: #f7f9f9;
+}

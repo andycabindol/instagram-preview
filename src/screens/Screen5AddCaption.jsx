@@ -5,7 +5,7 @@ import './Screen5AddCaption.css'
 
 function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], onOpenProfilePreview }) {
   const [caption, setCaption] = useState('')
-  const { config, isVariant } = useVariant()
+  const { config, isVariant, isProd } = useVariant()
 
   // Get cover image (first image is the cover)
   const coverImage = images.length > 0 ? images[0] : null
@@ -22,7 +22,7 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
   return (
     <div className="screen5-add-caption">
       {/* Navigation Bar */}
-      <div className="nav-bar">
+      <div className={`nav-bar ${isProd() ? 'prod' : ''}`}>
         <button className="back-button" onClick={onBack}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M15 18l-6-6 6-6" stroke="#0c1014" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

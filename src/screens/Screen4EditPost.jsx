@@ -52,95 +52,98 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview }) {
         )}
       </div>
 
-      {/* Toolbar - Post Actions */}
-      {config.showEditToolbar && (
-        <div className="toolbar-post-actions">
-          <div className="reels-toolbar">
-            <div className="toolbar-button">
-              <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18V5l12-2v13" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-                <circle cx="6" cy="18" r="3" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-                <circle cx="18" cy="16" r="3" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-              </svg>
-              <span>Music</span>
-            </div>
-            <div className="toolbar-button">
-              <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-              <span>Text</span>
-            </div>
-            <div className="toolbar-button">
-              <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-                <rect x="3" y="3" width="18" height="18" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-              </svg>
-              <span>Overlay</span>
-            </div>
-            <div className="toolbar-button">
-              <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2v20M2 12h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-              <span>Filter</span>
-            </div>
-            {config.canEdit && (
+      {/* Toolbar Container - Fixed at Bottom */}
+      <div className="toolbar-container">
+        {/* Toolbar - Post Actions */}
+        {config.showEditToolbar && (
+          <div className="toolbar-post-actions">
+            <div className="reels-toolbar">
               <div className="toolbar-button">
                 <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="5" r="1.5" fill="#f7f9f9"/>
-                  <circle cx="12" cy="12" r="1.5" fill="#f7f9f9"/>
-                  <circle cx="12" cy="19" r="1.5" fill="#f7f9f9"/>
+                  <path d="M9 18V5l12-2v13" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+                  <circle cx="6" cy="18" r="3" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+                  <circle cx="18" cy="16" r="3" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
                 </svg>
-                <span>Edit</span>
+                <span>Music</span>
               </div>
-            )}
-            {config.showCroppingTools && (
+              <div className="toolbar-button">
+                <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 7h16M4 12h16M4 17h16" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                <span>Text</span>
+              </div>
               <div className="toolbar-button">
                 <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
                   <rect x="3" y="3" width="18" height="18" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-                  <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="#f7f9f9" strokeWidth="1" fill="none"/>
                 </svg>
-                <span>Crop</span>
+                <span>Overlay</span>
               </div>
-            )}
-            {config.showCoverSelectionUI && (
               <div className="toolbar-button">
                 <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
-                  <rect x="2" y="4" width="20" height="16" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
-                  {config.coverSelectionMode === 'top' && (
-                    <path d="M2 8h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
-                  )}
-                  {config.coverSelectionMode === 'bottom' && (
-                    <path d="M2 16h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
-                  )}
+                  <path d="M12 2v20M2 12h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
                 </svg>
-                <span>Cover</span>
+                <span>Filter</span>
               </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Toolbar - Edit Post */}
-      <div className="toolbar-edit-post">
-        <div className="edit-toolbar">
-          <div className="add-image-button">
-            <img src={currentImages.length > 0 ? currentImages[0] : "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop"} alt="Thumbnail" />
-            <div className="add-overlay">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M12 5v14M5 12h14" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
+              {config.canEdit && (
+                <div className="toolbar-button">
+                  <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="5" r="1.5" fill="#f7f9f9"/>
+                    <circle cx="12" cy="12" r="1.5" fill="#f7f9f9"/>
+                    <circle cx="12" cy="19" r="1.5" fill="#f7f9f9"/>
+                  </svg>
+                  <span>Edit</span>
+                </div>
+              )}
+              {config.showCroppingTools && (
+                <div className="toolbar-button">
+                  <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+                    <path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="#f7f9f9" strokeWidth="1" fill="none"/>
+                  </svg>
+                  <span>Crop</span>
+                </div>
+              )}
+              {config.showCoverSelectionUI && (
+                <div className="toolbar-button">
+                  <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
+                    <rect x="2" y="4" width="20" height="16" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
+                    {config.coverSelectionMode === 'top' && (
+                      <path d="M2 8h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
+                    )}
+                    {config.coverSelectionMode === 'bottom' && (
+                      <path d="M2 16h20" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
+                    )}
+                  </svg>
+                  <span>Cover</span>
+                </div>
+              )}
             </div>
           </div>
-          {config.enablePreviewFlow && (
-            <PreviewButton onClick={handleOpenPreview} />
-          )}
-          <button className="next-button-large" onClick={() => onNext(currentImages)}>
-            <span>Next</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 4l4 4-4 4" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+        )}
+
+        {/* Toolbar - Edit Post */}
+        <div className="toolbar-edit-post">
+          <div className="edit-toolbar">
+            <div className="add-image-button">
+              <img src={currentImages.length > 0 ? currentImages[0] : "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400&h=400&fit=crop"} alt="Thumbnail" />
+              <div className="add-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 5v14M5 12h14" stroke="#f7f9f9" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
+            </div>
+            {config.enablePreviewFlow && (
+              <PreviewButton onClick={handleOpenPreview} />
+            )}
+            <button className="next-button-large" onClick={() => onNext(currentImages)}>
+              <span>Next</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 4l4 4-4 4" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          <HomeIndicator dark />
         </div>
-        <HomeIndicator dark />
       </div>
     </div>
   )
