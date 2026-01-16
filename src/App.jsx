@@ -7,6 +7,7 @@ import Screen4EditPost from './screens/Screen4EditPost'
 import Screen5AddCaption from './screens/Screen5AddCaption'
 import Screen6Profile from './screens/Screen6Profile'
 import PreviewScreen from './screens/PreviewScreen'
+import ProfilePreviewScreen from './screens/ProfilePreviewScreen'
 import './App.css'
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
   const [previousScreen, setPreviousScreen] = useState(2) // Track which screen we came from
   const [showPreview, setShowPreview] = useState(false)
   const [previewImages, setPreviewImages] = useState([])
+  const [showProfilePreview, setShowProfilePreview] = useState(false)
+  const [profilePreviewCoverImage, setProfilePreviewCoverImage] = useState(null)
   const [profilePosts, setProfilePosts] = useState([
     'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop',
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
@@ -178,6 +181,16 @@ function App() {
     // Return to Screen4EditPost (images remain unchanged)
   }
 
+  const handleOpenProfilePreview = (coverImage) => {
+    setProfilePreviewCoverImage(coverImage)
+    setShowProfilePreview(true)
+  }
+
+  const handleCloseProfilePreview = () => {
+    setShowProfilePreview(false)
+    setProfilePreviewCoverImage(null)
+  }
+
   const handleShare = (images, caption) => {
     // Create a new post object
     const newPost = {
@@ -212,15 +225,17 @@ function App() {
   useEffect(() => {
     const body = document.body
     // Remove all screen classes
-    body.classList.remove('screen-1', 'screen-2', 'screen-3', 'screen-4', 'screen-5', 'screen-6', 'screen-preview')
+    body.classList.remove('screen-1', 'screen-2', 'screen-3', 'screen-4', 'screen-5', 'screen-6', 'screen-preview', 'screen-profile-preview')
     
     // Add class for current screen
-    if (currentScreen === 4 && showPreview) {
+    if (showProfilePreview) {
+      body.classList.add('screen-profile-preview')
+    } else if (currentScreen === 4 && showPreview) {
       body.classList.add('screen-preview')
     } else {
       body.classList.add(`screen-${currentScreen}`)
     }
-  }, [currentScreen, showPreview])
+  }, [currentScreen, showPreview, showProfilePreview])
 
   return (
     <VariantProvider>
@@ -242,6 +257,10 @@ function App() {
         handlePreviewCancel={handlePreviewCancel}
         profilePosts={profilePosts}
         handleShare={handleShare}
+        showProfilePreview={showProfilePreview}
+        profilePreviewCoverImage={profilePreviewCoverImage}
+        handleOpenProfilePreview={handleOpenProfilePreview}
+        handleCloseProfilePreview={handleCloseProfilePreview}
       />
     </VariantProvider>
   )
@@ -265,6 +284,10 @@ function AppContent({
   handlePreviewCancel,
   profilePosts,
   handleShare,
+  showProfilePreview,
+  profilePreviewCoverImage,
+  handleOpenProfilePreview,
+  handleCloseProfilePreview,
 }) {
   const { variantId } = useVariant()
 
@@ -308,12 +331,20 @@ function AppContent({
           profilePosts={profilePosts}
         />
       )}
-      {currentScreen === 5 && (
+      {currentScreen === 5 && !showProfilePreview && (
         <Screen5AddCaption
           onBack={() => navigateToScreen(4)}
           onShare={handleShare}
           images={imagesForEdit}
           profilePosts={profilePosts}
+          onOpenProfilePreview={handleOpenProfilePreview}
+        />
+      )}
+      {showProfilePreview && (
+        <ProfilePreviewScreen
+          coverImage={profilePreviewCoverImage}
+          profilePosts={profilePosts}
+          onClose={handleCloseProfilePreview}
         />
       )}
       {currentScreen === 6 && (

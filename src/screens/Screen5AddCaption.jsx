@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import { useVariant } from '../variants/VariantProvider'
 import HomeIndicator from '../components/HomeIndicator'
-import ProfileGridPreviewModal from '../components/ProfileGridPreviewModal'
 import './Screen5AddCaption.css'
 
-function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [] }) {
+function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], onOpenProfilePreview }) {
   const [caption, setCaption] = useState('')
-  const [showProfilePreview, setShowProfilePreview] = useState(false)
   const { config, isVariant } = useVariant()
 
   // Get cover image (first image is the cover)
@@ -16,13 +14,9 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [] }) 
   const showProfilePreviewButton = isV1 && config.enableProfilePreview
 
   const handleOpenProfilePreview = () => {
-    if (hasCoverImage) {
-      setShowProfilePreview(true)
+    if (hasCoverImage && onOpenProfilePreview) {
+      onOpenProfilePreview(coverImage)
     }
-  }
-
-  const handleCloseProfilePreview = () => {
-    setShowProfilePreview(false)
   }
 
   return (
@@ -195,15 +189,6 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [] }) 
         </button>
         <HomeIndicator />
       </div>
-
-      {/* Profile Grid Preview Modal */}
-      {showProfilePreview && coverImage && (
-        <ProfileGridPreviewModal
-          coverImage={coverImage}
-          profilePosts={profilePosts}
-          onClose={handleCloseProfilePreview}
-        />
-      )}
     </div>
   )
 }
