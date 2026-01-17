@@ -20,7 +20,7 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
   }
 
   return (
-    <div className="screen5-add-caption">
+    <div className={`screen5-add-caption ${isV1 ? 'v1' : ''}`}>
       {/* Navigation Bar */}
       <div className={`nav-bar ${isProd() ? 'prod' : ''}`}>
         <button className="back-button" onClick={onBack}>

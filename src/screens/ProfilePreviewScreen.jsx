@@ -26,6 +26,7 @@ function ProfilePreviewScreen({ coverImage, profilePosts = [], onClose }) {
     <div className="profile-preview-screen">
       {/* Header */}
       <div className="profile-preview-header">
+        <div className="profile-preview-header-spacer"></div>
         <h2 className="profile-preview-header-title">Preview on profile</h2>
         <button className="profile-preview-header-button" onClick={onClose}>
           <span>Done</span>

@@ -22,12 +22,16 @@
   z-index: 100;
 }
 
+.profile-preview-header-spacer {
+  width: 60px; /* Balance the button on the right */
+}
+
 .profile-preview-header-button {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  margin-left: auto;
+  margin-left: 0;
 }
 
 .profile-preview-header-button span {

@@ -8,6 +8,7 @@ import './Screen4EditPost.css'
 function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview, profilePosts = [] }) {
   const { config, isVariant } = useVariant()
   const isV3 = isVariant('v3')
+  const isV1 = isVariant('v1')
   const [currentImages, setCurrentImages] = useState([...images])
   const [showProfilePreview, setShowProfilePreview] = useState(false)
   const [originalImageOrder, setOriginalImageOrder] = useState([])
@@ -74,7 +75,7 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview, profileP
       {/* Toolbar Container - Fixed at Bottom */}
       <div className="toolbar-container">
         {/* Toolbar - Post Actions */}
-        {config.showEditToolbar && (
+        {(config.showEditToolbar || isV1) && (
           <div className="toolbar-post-actions">
             <div className="reels-toolbar">
               <div className="toolbar-button">
@@ -103,7 +104,7 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview, profileP
                 </svg>
                 <span>Filter</span>
               </div>
-              {config.canEdit && (
+              {(config.canEdit || isV1) && (
                 <div className="toolbar-button">
                   <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="5" r="1.5" fill="#f7f9f9"/>

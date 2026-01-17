@@ -260,6 +260,15 @@
   z-index: 1000;
 }
 
+/* V1: Reduce gap between preview button and share button */
+.screen5-add-caption.v1 .bottom-toolbar {
+  gap: 8px;
+}
+
+.screen5-add-caption.v1 .preview-profile-button-v5 {
+  margin-bottom: 0;
+}
+
 .screen5-add-caption .share-button {
   background-color: #8593ff;
   border: none;
