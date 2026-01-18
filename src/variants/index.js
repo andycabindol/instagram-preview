@@ -1,5 +1,8 @@
 import { prodConfig } from './prod'
 import { v1Config } from './v1'
+import { v1_1Config } from './v1.1'
+import { v1_2Config } from './v1.2'
+import { v1_3Config } from './v1.3'
 import { v2Config } from './v2'
 import { v3Config } from './v3'
 import { v4Config } from './v4'
@@ -39,6 +42,12 @@ function getVariantOverride(variantId) {
       return {}
     case 'v1':
       return v1Config
+    case 'v1.1':
+      return v1_1Config
+    case 'v1.2':
+      return v1_2Config
+    case 'v1.3':
+      return v1_3Config
     case 'v2':
       return v2Config
     case 'v3':
@@ -66,7 +75,7 @@ export function getStoredVariant() {
   if (typeof window === 'undefined') return 'prod'
   
   const stored = localStorage.getItem('prototype-variant')
-  if (stored && ['prod', 'v1', 'v2', 'v3', 'v4'].includes(stored)) {
+  if (stored && ['prod', 'v1', 'v1.1', 'v1.2', 'v1.3', 'v2', 'v3', 'v4'].includes(stored)) {
     return stored
   }
   return 'prod'

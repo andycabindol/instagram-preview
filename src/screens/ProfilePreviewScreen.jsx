@@ -5,9 +5,13 @@ import './ProfilePreviewScreen.css'
 function ProfilePreviewScreen({ coverImage, profilePosts = [], onClose }) {
   const { isVariant } = useVariant()
   const isV1 = isVariant('v1')
+  const isV1_1 = isVariant('v1.1')
+  const isV1_2 = isVariant('v1.2')
+  const isV1_3 = isVariant('v1.3')
+  const isPreviewVariant = isV1 || isV1_1 || isV1_2 || isV1_3
 
-  // Only show for v1
-  if (!isV1) {
+  // Only show for preview variants (v1, v1.1, v1.2, v1.3)
+  if (!isPreviewVariant) {
     return null
   }
 

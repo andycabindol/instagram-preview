@@ -11,7 +11,12 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
   const coverImage = images.length > 0 ? images[0] : null
   const hasCoverImage = coverImage !== null
   const isV1 = isVariant('v1')
-  const showProfilePreviewButton = isV1 && config.enableProfilePreview
+  const isV1_1 = isVariant('v1.1')
+  const isV1_2 = isVariant('v1.2')
+  const isV1_3 = isVariant('v1.3')
+  const isPreviewVariant = isV1 || isV1_1 || isV1_2 || isV1_3
+  const showProfilePreviewButton = isPreviewVariant && config.enableProfilePreview
+  const previewButtonPlacement = config.previewButtonPlacement || (isV1 ? 'bottom-toolbar' : 'bottom-toolbar')
 
   const handleOpenProfilePreview = () => {
     if (hasCoverImage && onOpenProfilePreview) {
@@ -20,7 +25,7 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
   }
 
   return (
-    <div className={`screen5-add-caption ${isV1 ? 'v1' : ''}`}>
+    <div className={`screen5-add-caption ${isV1 ? 'v1' : ''} ${isV1_1 ? 'v1-1' : ''} ${isV1_2 ? 'v1-2' : ''} ${isV1_3 ? 'v1-3' : ''}`}>
       {/* Navigation Bar */}
       <div className={`nav-bar ${isProd() ? 'prod' : ''}`}>
         <button className="back-button" onClick={onBack}>
@@ -29,6 +34,22 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
           </svg>
         </button>
         <p className="nav-title">New post</p>
+        {/* v1.2: Preview button in nav bar */}
+        {showProfilePreviewButton && previewButtonPlacement === 'nav-bar' && (
+          <button 
+            className="preview-profile-button-nav" 
+            onClick={handleOpenProfilePreview}
+            disabled={!hasCoverImage}
+            title={!hasCoverImage ? 'Select a cover image to preview' : 'Preview on Profile'}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="7" height="7" stroke="#4a5df9" strokeWidth="1.5" fill="none"/>
+              <rect x="14" y="3" width="7" height="7" stroke="#4a5df9" strokeWidth="1.5" fill="none"/>
+              <rect x="3" y="14" width="7" height="7" stroke="#4a5df9" strokeWidth="1.5" fill="none"/>
+              <rect x="14" y="14" width="7" height="7" stroke="#4a5df9" strokeWidth="1.5" fill="none"/>
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Content */}
@@ -79,6 +100,23 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
               </svg>
               <span>Prompt</span>
             </button>
+            {/* v1.3: Preview button inline with caption buttons */}
+            {showProfilePreviewButton && previewButtonPlacement === 'caption-inline' && (
+              <button 
+                className="caption-button preview-profile-button-inline" 
+                onClick={handleOpenProfilePreview}
+                disabled={!hasCoverImage}
+                title={!hasCoverImage ? 'Select a cover image to preview' : 'Preview on Profile'}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+                  <rect x="14" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+                  <rect x="3" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+                  <rect x="14" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+                </svg>
+                <span>Preview</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -168,9 +206,10 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
 
       {/* Bottom Toolbar */}
       <div className="bottom-toolbar">
-        {showProfilePreviewButton && (
+        {/* v1 and v1.1: Preview button in bottom toolbar */}
+        {showProfilePreviewButton && (previewButtonPlacement === 'bottom-toolbar' || !previewButtonPlacement) && (
           <button 
-            className="preview-profile-button-v5" 
+            className={`preview-profile-button-v5 ${isV1_1 ? 'v1-1-polished' : ''}`}
             onClick={handleOpenProfilePreview}
             disabled={!hasCoverImage}
             title={!hasCoverImage ? 'Select a cover image to preview' : 'Preview on Profile'}
