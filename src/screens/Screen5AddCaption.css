@@ -52,12 +52,22 @@
 /* v1.2: Nav bar needs space for preview button */
 .screen5-add-caption.v1-2 .nav-bar {
   justify-content: space-between;
+  align-items: center;
 }
 
 .screen5-add-caption.v1-2 .nav-title {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  top: 50%;
+  margin-top: 0;
+}
+
+/* v1.2: Ensure back button and preview button align with title */
+.screen5-add-caption.v1-2 .back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .screen5-add-caption .preview-profile-button-nav {
@@ -82,6 +92,11 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+}
+
+/* v1.2: Preview button icon is black and aligned */
+.screen5-add-caption.v1-2 .preview-profile-button-nav.v1-2-nav-button svg rect {
+  stroke: #0c1014;
 }
 
 /* Prod: Center nav-title within relative nav-bar */

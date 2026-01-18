@@ -37,16 +37,16 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
         {/* v1.2: Preview button in nav bar */}
         {showProfilePreviewButton && previewButtonPlacement === 'nav-bar' && (
           <button 
-            className="preview-profile-button-nav" 
+            className="preview-profile-button-nav v1-2-nav-button" 
             onClick={handleOpenProfilePreview}
             disabled={!hasCoverImage}
             title={!hasCoverImage ? 'Select a cover image to preview' : 'Preview on Profile'}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="3" width="7" height="7" stroke="#4a5df9" strokeWidth="1.5" fill="none"/>
-              <rect x="14" y="3" width="7" height="7" stroke="#4a5df9" strokeWidth="1.5" fill="none"/>
-              <rect x="3" y="14" width="7" height="7" stroke="#4a5df9" strokeWidth="1.5" fill="none"/>
-              <rect x="14" y="14" width="7" height="7" stroke="#4a5df9" strokeWidth="1.5" fill="none"/>
+              <rect x="3" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+              <rect x="14" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+              <rect x="3" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+              <rect x="14" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
             </svg>
           </button>
         )}
