@@ -58,6 +58,18 @@
   background-color: #f39c12; /* Orange */
 }
 
+.screen1-feed .variant-badge-v1-1 {
+  background-color: #9b59b6; /* Purple */
+}
+
+.screen1-feed .variant-badge-v1-2 {
+  background-color: #1abc9c; /* Teal */
+}
+
+.screen1-feed .variant-badge-v1-3 {
+  background-color: #e67e22; /* Dark Orange */
+}
+
 /* .top-bar.nav-hidden {
   transform: translateY(-100%);
 } */
