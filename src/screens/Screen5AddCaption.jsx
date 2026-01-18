@@ -100,23 +100,6 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
               </svg>
               <span>Prompt</span>
             </button>
-            {/* v1.3: Preview button inline with caption buttons */}
-            {showProfilePreviewButton && previewButtonPlacement === 'caption-inline' && (
-              <button 
-                className="caption-button preview-profile-button-inline" 
-                onClick={handleOpenProfilePreview}
-                disabled={!hasCoverImage}
-                title={!hasCoverImage ? 'Select a cover image to preview' : 'Preview on Profile'}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                  <rect x="3" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
-                  <rect x="14" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
-                  <rect x="3" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
-                  <rect x="14" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
-                </svg>
-                <span>Preview</span>
-              </button>
-            )}
           </div>
         </div>
 
@@ -188,6 +171,31 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
             </svg>
           </div>
           <div className="divider"></div>
+          {/* v1.3: Preview on Profile option in menu */}
+          {showProfilePreviewButton && previewButtonPlacement === 'caption-inline' && (
+            <>
+              <div 
+                className="option-item preview-option-v1-3" 
+                onClick={handleOpenProfilePreview}
+                style={{ cursor: hasCoverImage ? 'pointer' : 'not-allowed', opacity: hasCoverImage ? 1 : 0.4 }}
+                title={!hasCoverImage ? 'Select a cover image to preview' : 'Preview on Profile'}
+              >
+                <div className="option-left">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+                    <rect x="14" y="3" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+                    <rect x="3" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+                    <rect x="14" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
+                  </svg>
+                  <span>Preview on Profile</span>
+                </div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="chevron">
+                  <path d="M9 18l6-6-6-6" stroke="#6f7680" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <div className="divider"></div>
+            </>
+          )}
           <div className="option-item">
             <div className="option-left">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
