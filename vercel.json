@@ -4,8 +4,9 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!api|@|src|node_modules|assets).*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "devCommand": "vite --host"
 }

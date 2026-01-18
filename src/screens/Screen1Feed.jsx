@@ -118,7 +118,21 @@ function Post({ postData, index }) {
   )
 }
 
-function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
+// Helper function to proxy Instagram CDN images
+const proxyImageUrl = (url) => {
+  if (!url) return url
+  // If it's already an Instagram CDN URL, proxy it
+  if (url.includes('cdninstagram.com') || url.includes('instagram.com')) {
+    return `/api/ig-image?url=${encodeURIComponent(url)}`
+  }
+  return url
+}
+
+function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick, profileData }) {
+  // Get profile avatar (use loaded profile or fallback)
+  const profileAvatar = profileData?.avatarUrl 
+    ? proxyImageUrl(profileData.avatarUrl)
+    : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces'
   const { variantId, setVariant, isProd, isVariant } = useVariant()
   const [isScrollingDown, setIsScrollingDown] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
@@ -364,7 +378,7 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
           <div className="story-item my-story">
             <div className="story-picture">
               <div className="story-avatar">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces" alt="Your story" />
+                <img src={profileAvatar} alt="Your story" />
               </div>
               <div className="story-add-badge">
                 <svg width="24" height="24" viewBox="0 0 18 18" fill="none">
@@ -426,7 +440,7 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick }) {
           </div>
           <div className="tab" onClick={onProfileClick} style={{ cursor: 'pointer' }}>
             <div className="profile-tab-avatar">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces" alt="Profile" />
+              <img src={profileAvatar} alt="Profile" />
             </div>
           </div>
         </div>

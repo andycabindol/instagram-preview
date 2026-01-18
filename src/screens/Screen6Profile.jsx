@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import HomeIndicator from '../components/HomeIndicator'
 import './Screen6Profile.css'
 
-function Screen6Profile({ onHomeClick, postImages: postImagesProp }) {
+const STORAGE_KEY = 'instagram_profile_data'
+
+function Screen6Profile({ onHomeClick, postImages: postImagesProp, profileData: profileDataProp, setProfileData: setProfileDataProp }) {
   const defaultPostImages = [
     'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop',
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
@@ -20,14 +22,180 @@ function Screen6Profile({ onHomeClick, postImages: postImagesProp }) {
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
   ]
   
-  const postImages = postImagesProp || defaultPostImages
+  const [usernameInput, setUsernameInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  
+  // Use profileData from props (managed in App.jsx) or local state
+  const profileData = profileDataProp || null
+  const setProfileData = setProfileDataProp || (() => {})
+
+  const handleLoadProfile = async () => {
+    const username = usernameInput.trim().toLowerCase().replace(/^@/, '')
+    if (!username) {
+      setError('Please enter a username')
+      return
+    }
+
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch(`/api/ig?username=${encodeURIComponent(username)}`)
+      
+      // Check if response is OK and content-type is JSON
+      const contentType = response.headers.get('content-type') || ''
+      if (!contentType.includes('application/json')) {
+        const text = await response.text()
+        console.error('Non-JSON response:', text.substring(0, 200))
+        setError('Server returned invalid response. Check console for details.')
+        return
+      }
+
+      let data
+      try {
+        data = await response.json()
+      } catch (parseError) {
+        const text = await response.text()
+        console.error('Failed to parse JSON:', parseError.message)
+        console.error('Response text:', text.substring(0, 500))
+        setError(`Invalid response from server: ${parseError.message}`)
+        return
+      }
+
+      if (data.ok && data.profile) {
+        // Log received profile data for debugging
+        console.log('Profile loaded:', {
+          username: data.profile.username,
+          postsCount: data.profile.postsCount,
+          postsArrayLength: data.profile.posts?.length || 0,
+          firstPost: data.profile.posts?.[0],
+          isPrivate: data.profile.isPrivate
+        })
+        
+        // Update profile data (this will update App.jsx state)
+        setProfileData(data.profile)
+        // Also save to localStorage
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data.profile))
+        } catch (e) {
+          console.error('Failed to save profile:', e)
+        }
+      } else {
+        setError(data.error?.message || data.error?.code || 'Failed to load profile')
+      }
+    } catch (err) {
+      console.error('Fetch error:', err)
+      setError(err.message || 'Network error. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const formatNumber = (num) => {
+    if (!num) return '0'
+    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`
+    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`
+    return num.toString()
+  }
+
+  // Proxy Instagram CDN images through our API to bypass CORS
+  const proxyImageUrl = (url) => {
+    if (!url) return url
+    // If it's already an Instagram CDN URL, proxy it
+    if (url.includes('cdninstagram.com') || url.includes('instagram.com')) {
+      return `/api/ig-image?url=${encodeURIComponent(url)}`
+    }
+    return url
+  }
+
+  // Use profile data if available, otherwise use props/defaults
+  const displayUsername = profileData?.username || 'gursky.studio'
+  const displayName = profileData?.displayName || 'Stan Gursky'
+  const avatarUrl = proxyImageUrl(profileData?.avatarUrl) || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces'
+  const bio = profileData?.bio || 'visual designer. diehard UI/UX nerd. mobile fiend. icons lover. #yourmomsfavorite'
+  const website = profileData?.website
+  const postsCount = profileData?.postsCount || 151
+  const followersCount = profileData?.followersCount || 112000
+  const followingCount = profileData?.followingCount || 162
+  // Use loaded Instagram posts if available, otherwise fallback to props/defaults
+  // For private profiles, use mock posts from API, otherwise use real posts or fallback
+  const postImages = profileData?.posts && profileData.posts.length > 0
+    ? profileData.posts.map(p => {
+        // Don't proxy Unsplash URLs (mock data)
+        const url = p.thumbnailUrl || '';
+        if (url.includes('unsplash.com')) {
+          return url;
+        }
+        return proxyImageUrl(url);
+      }).filter(Boolean)
+    : (postImagesProp || defaultPostImages)
+  
+  // Debug: Log what we're using
+  if (profileData) {
+    console.log('Profile data in component:', {
+      hasPosts: !!profileData.posts,
+      postsLength: profileData.posts?.length || 0,
+      postImagesLength: postImages.length,
+      isPrivate: profileData.isPrivate,
+      isUsingFallback: !profileData.posts || profileData.posts.length === 0,
+      firstPostThumbnail: profileData.posts?.[0]?.thumbnailUrl
+    })
+  }
+  
+  // Debug logging
+  useEffect(() => {
+    if (profileData) {
+      console.log('Profile data in component:', {
+        hasPosts: !!profileData.posts,
+        postsLength: profileData.posts?.length || 0,
+        postImagesLength: postImages.length,
+        firstPostImage: postImages[0]
+      })
+    }
+  }, [profileData, postImages])
 
   return (
     <div className="screen6-profile">
+      {/* Instagram Profile Loader */}
+      <div className="ig-loader-panel">
+        <div className="ig-loader-input-group">
+          <input
+            type="text"
+            className="ig-loader-input"
+            placeholder="Enter Instagram username"
+            value={usernameInput}
+            onChange={(e) => setUsernameInput(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleLoadProfile()}
+            disabled={loading}
+          />
+          <button
+            className="ig-loader-button"
+            onClick={handleLoadProfile}
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'Load'}
+          </button>
+        </div>
+        {error && (
+          <div className="ig-loader-error">{error}</div>
+        )}
+        {profileData && (
+          <div className="ig-loader-success">
+            Loaded: @{profileData.username}
+          </div>
+        )}
+      </div>
+
       {/* Navigation Bar */}
       <div className="nav-bar">
         <div className="nav-headline">
-          <span className="username">gursky.studio</span>
+          <div className="username-container">
+            <span className="username">{displayUsername}</span>
+            {(profileData?.isPrivate === true || (profileData?.postsCount > 0 && profileData?.posts?.length === 0)) && (
+              <span className="private-profile-notice">Private profile, using mock data instead</span>
+            )}
+          </div>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="chevron-down">
             <path d="M4 6L8 10L12 6" stroke="#0c1014" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -38,7 +206,7 @@ function Screen6Profile({ onHomeClick, postImages: postImagesProp }) {
       <div className="profile-info">
         <div className="profile-picture-section">
           <div className="profile-picture">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces" alt="Profile" />
+            <img src={avatarUrl} alt="Profile" />
           </div>
           <div className="add-story-badge">
             <svg width="24" height="24" viewBox="0 0 18 18" fill="none">
@@ -49,15 +217,15 @@ function Screen6Profile({ onHomeClick, postImages: postImagesProp }) {
         </div>
         <div className="profile-stats">
           <div className="stat-item">
-            <span className="stat-number">151</span>
+            <span className="stat-number">{formatNumber(postsCount)}</span>
             <span className="stat-label">posts</span>
           </div>
           <div className="stat-item">
-            <span className="stat-number">112K</span>
+            <span className="stat-number">{formatNumber(followersCount)}</span>
             <span className="stat-label">followers</span>
           </div>
           <div className="stat-item">
-            <span className="stat-number">162</span>
+            <span className="stat-number">{formatNumber(followingCount)}</span>
             <span className="stat-label">following</span>
           </div>
         </div>
@@ -65,12 +233,23 @@ function Screen6Profile({ onHomeClick, postImages: postImagesProp }) {
 
       {/* Bio */}
       <div className="bio-section">
-        <h2 className="bio-name">Stan Gursky</h2>
+        <h2 className="bio-name">{displayName}</h2>
         <div className="bio-details">
+          {website && (
+            <div className="bio-link">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2L2 8L8 14M14 2L8 8L14 14" stroke="#0c1014" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <a href={website} target="_blank" rel="noopener noreferrer" className="link-text">{website}</a>
+            </div>
+          )}
           <p className="bio-text">
-            <span className="bio-subtitle">Designer</span>
-            <br />
-            visual designer. diehard UI/UX nerd. mobile fiend. icons lover. <span className="hashtag">#yourmomsfavorite</span>
+            {bio.split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                {i < bio.split('\n').length - 1 && <br />}
+              </React.Fragment>
+            ))}
           </p>
         </div>
       </div>
@@ -127,7 +306,15 @@ function Screen6Profile({ onHomeClick, postImages: postImagesProp }) {
         <div className="post-grid">
           {postImages.map((img, index) => (
             <div key={index} className="post-grid-item">
-              <img src={img} alt={`Post ${index + 1}`} />
+              <img 
+                src={img} 
+                alt={`Post ${index + 1}`}
+                onError={(e) => {
+                  // Hide image if it fails to load (blocked/close friends content)
+                  e.target.style.display = 'none';
+                  e.target.parentElement.style.backgroundColor = '#f7f9f9';
+                }}
+              />
             </div>
           ))}
         </div>
@@ -161,7 +348,7 @@ function Screen6Profile({ onHomeClick, postImages: postImagesProp }) {
           </div>
           <div className="tab">
             <div className="profile-tab-avatar">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces" alt="Profile" />
+              <img src={avatarUrl} alt="Profile" />
             </div>
           </div>
         </div>

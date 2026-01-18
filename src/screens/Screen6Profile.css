@@ -9,6 +9,86 @@
   min-height: 100vh;
 }
 
+/* Instagram Profile Loader Panel */
+.ig-loader-panel {
+  background-color: #f3f4f6;
+  border-bottom: 1px solid #dbdfe4;
+  padding: 12px;
+  width: 100%;
+  z-index: 10;
+}
+
+.ig-loader-input-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ig-loader-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #dbdfe4;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #0c1014;
+  background-color: #ffffff;
+}
+
+.ig-loader-input:focus {
+  outline: none;
+  border-color: #4a5df9;
+}
+
+.ig-loader-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ig-loader-button {
+  padding: 8px 16px;
+  background-color: #4a5df9;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ig-loader-button:hover:not(:disabled) {
+  background-color: #3a4de9;
+}
+
+.ig-loader-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ig-loader-error {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c00;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+}
+
+.ig-loader-success {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #efe;
+  border: 1px solid #cfc;
+  border-radius: 4px;
+  color: #060;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+}
+
 .screen6-profile .nav-bar {
   background-color: #ffffff;
   display: flex;
@@ -22,6 +102,15 @@
   display: flex;
   gap: 2px;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.screen6-profile .username-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+  min-width: 0;
 }
 
 .screen6-profile .username {
@@ -31,6 +120,17 @@
   line-height: normal;
   color: #0c1014;
   letter-spacing: 0.21px;
+}
+
+.screen6-profile .private-profile-notice {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: normal;
+  color: #6f7680;
+  letter-spacing: 0.11px;
+  display: block;
+  white-space: nowrap;
 }
 
 .screen6-profile .chevron-down {

@@ -19,13 +19,8 @@ function ProfilePreviewScreenV3({ images = [], profilePosts = [], onClose, onDon
   // Create preview grid with current cover image at top-left (most recent post)
   const previewGrid = [
     images[currentCoverIndex] || images[0], // Current cover image (most recent)
-    ...profilePosts.slice(0, 11) // Existing profile posts (limit to 12 total for preview)
+    ...profilePosts // All existing profile posts
   ]
-
-  // Fill remaining slots with placeholder gray boxes if needed
-  while (previewGrid.length < 12) {
-    previewGrid.push(null)
-  }
 
   const handleSwipeStart = (e) => {
     touchStartX.current = e.touches[0].clientX

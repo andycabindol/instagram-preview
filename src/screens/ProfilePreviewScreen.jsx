@@ -18,13 +18,8 @@ function ProfilePreviewScreen({ coverImage, profilePosts = [], onClose }) {
   // Create preview grid with cover image at top-left (most recent post)
   const previewGrid = [
     coverImage, // New post's cover image (most recent)
-    ...profilePosts.slice(0, 11) // Existing profile posts (limit to 12 total for preview)
+    ...profilePosts // All existing profile posts
   ]
-
-  // Fill remaining slots with placeholder gray boxes if needed
-  while (previewGrid.length < 12) {
-    previewGrid.push(null)
-  }
 
   return (
     <div className="profile-preview-screen">

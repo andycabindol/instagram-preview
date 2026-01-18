@@ -10,6 +10,18 @@ import PreviewScreen from './screens/PreviewScreen'
 import ProfilePreviewScreen from './screens/ProfilePreviewScreen'
 import './App.css'
 
+const STORAGE_KEY = 'instagram_profile_data'
+
+// Helper function to proxy Instagram CDN images
+const proxyImageUrl = (url) => {
+  if (!url) return url
+  // If it's already an Instagram CDN URL, proxy it
+  if (url.includes('cdninstagram.com') || url.includes('instagram.com')) {
+    return `/api/ig-image?url=${encodeURIComponent(url)}`
+  }
+  return url
+}
+
 function App() {
   const [currentScreen, setCurrentScreen] = useState(1)
   const [selectedImages, setSelectedImages] = useState([])
@@ -20,6 +32,7 @@ function App() {
   const [previewImages, setPreviewImages] = useState([])
   const [showProfilePreview, setShowProfilePreview] = useState(false)
   const [profilePreviewCoverImage, setProfilePreviewCoverImage] = useState(null)
+  const [profileData, setProfileData] = useState(null)
   const [profilePosts, setProfilePosts] = useState([
     'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop',
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
@@ -37,11 +50,29 @@ function App() {
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
   ])
   
+  // Load saved profile from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        setProfileData(parsed)
+      }
+    } catch (e) {
+      console.error('Failed to load saved profile:', e)
+    }
+  }, [])
+
+  // Get default avatar (use loaded profile or fallback)
+  const defaultAvatar = profileData?.avatarUrl 
+    ? proxyImageUrl(profileData.avatarUrl)
+    : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces'
+
   const [feedPosts, setFeedPosts] = useState([
     {
-      username: 'gursky.studio',
+      username: profileData?.username || 'gursky.studio',
       verified: true,
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces',
+      avatar: defaultAvatar,
       image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=500&fit=crop',
       likes: '1.139',
       comments: '58',
@@ -194,9 +225,9 @@ function App() {
   const handleShare = (images, caption) => {
     // Create a new post object
     const newPost = {
-      username: 'gursky.studio',
+      username: profileData?.username || 'gursky.studio',
       verified: true,
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces',
+      avatar: defaultAvatar,
       image: images[0] || 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=500&fit=crop',
       images: images, // Store all images for carousel support
       likes: '0',
@@ -261,6 +292,8 @@ function App() {
         profilePreviewCoverImage={profilePreviewCoverImage}
         handleOpenProfilePreview={handleOpenProfilePreview}
         handleCloseProfilePreview={handleCloseProfilePreview}
+        profileData={profileData}
+        setProfileData={setProfileData}
       />
     </VariantProvider>
   )
@@ -288,6 +321,8 @@ function AppContent({
   profilePreviewCoverImage,
   handleOpenProfilePreview,
   handleCloseProfilePreview,
+  profileData,
+  setProfileData,
 }) {
   const { variantId } = useVariant()
 
@@ -298,6 +333,7 @@ function AppContent({
           onPlusClick={handlePlusClick} 
           posts={feedPosts}
           onProfileClick={() => navigateToScreen(6)}
+          profileData={profileData}
         />
       )}
       {currentScreen === 2 && (
@@ -350,7 +386,12 @@ function AppContent({
         />
       )}
       {currentScreen === 6 && (
-        <Screen6Profile onHomeClick={() => navigateToScreen(1)} postImages={profilePosts} />
+        <Screen6Profile 
+          onHomeClick={() => navigateToScreen(1)} 
+          postImages={profilePosts}
+          profileData={profileData}
+          setProfileData={setProfileData}
+        />
       )}
     </div>
   )
