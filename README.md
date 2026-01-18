@@ -28,6 +28,29 @@ npm run dev
 npm run build
 ```
 
+## Deployment
+
+This project is configured for deployment to Vercel.
+
+### Deploy to Vercel
+
+1. **Using Vercel CLI** (recommended):
+   ```bash
+   npm i -g vercel
+   vercel
+   ```
+
+2. **Using GitHub Integration**:
+   - Push your code to a GitHub repository
+   - Import the project in [Vercel Dashboard](https://vercel.com/dashboard)
+   - Vercel will automatically detect the Vite configuration and deploy
+
+The `vercel.json` configuration file is already set up with:
+- Build command: `npm run build`
+- Output directory: `dist`
+- Framework: Vite
+- SPA routing support (all routes redirect to index.html)
+
 ## Screen Flow
 
 1. **Screen 1 (Feed)**: Click the plus button to go to image selection
