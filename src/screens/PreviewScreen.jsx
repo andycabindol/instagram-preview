@@ -6,6 +6,7 @@ import './PreviewScreen.css'
 function PreviewScreen({ images, onCancel, onDone, isMultiSelect, profilePosts = [] }) {
   const { isVariant } = useVariant()
   const isV2 = isVariant('v2')
+  const isV4 = isVariant('v4')
   const [tempCoverIndex, setTempCoverIndex] = useState(0)
   const [tempImages, setTempImages] = useState([...images])
   const [isSheetHidden, setIsSheetHidden] = useState(false)
@@ -294,6 +295,8 @@ function PreviewScreen({ images, onCancel, onDone, isMultiSelect, profilePosts =
                   transform: `scale(${coverZoom}) translate(${coverPan.x}px, ${coverPan.y}px)`,
                   transformOrigin: 'center center',
                   transition: (isZooming || isPanning) ? 'none' : 'transform 0.1s ease-out'
+                } : index === 0 && isV4 ? {
+                  pointerEvents: 'none' // v4: Disable interaction - no cropping/adjustment allowed
                 } : {}}
               />
             </div>
