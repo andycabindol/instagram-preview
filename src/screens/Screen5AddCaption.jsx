@@ -228,7 +228,7 @@ function Screen5AddCaption({ onBack, onShare, images = [], profilePosts = [], on
               <rect x="3" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
               <rect x="14" y="14" width="7" height="7" stroke="#0c1014" strokeWidth="1.5" fill="none"/>
             </svg>
-            <span>Preview on Profile</span>
+            <span>{isV1_1 ? 'Preview on profile' : 'Preview on Profile'}</span>
           </button>
         )}
         <button className="share-button" onClick={() => onShare(images, caption)}>

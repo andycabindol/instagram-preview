@@ -312,31 +312,24 @@ function Screen1Feed({ onPlusClick, posts: postsProp, onProfileClick, profileDat
                 {variantId === 'prod' && <span className="check">✓</span>}
               </div>
               <div 
-                className={`prototype-menu-item ${variantId === 'v1' ? 'active' : ''}`}
-                onClick={() => { setVariant('v1'); setShowPrototypeMenu(false); }}
-              >
-                <span>v1 - No editing</span>
-                {variantId === 'v1' && <span className="check">✓</span>}
-              </div>
-              <div 
                 className={`prototype-menu-item ${variantId === 'v1.1' ? 'active' : ''}`}
                 onClick={() => { setVariant('v1.1'); setShowPrototypeMenu(false); }}
               >
-                <span>v1.1 - Preview (bottom, polished)</span>
+                <span>v1.1 - Preview only (fixed bottom)</span>
                 {variantId === 'v1.1' && <span className="check">✓</span>}
               </div>
               <div 
                 className={`prototype-menu-item ${variantId === 'v1.2' ? 'active' : ''}`}
                 onClick={() => { setVariant('v1.2'); setShowPrototypeMenu(false); }}
               >
-                <span>v1.2 - Preview (nav bar)</span>
+                <span>v1.2 - Preview only (top header)</span>
                 {variantId === 'v1.2' && <span className="check">✓</span>}
               </div>
               <div 
                 className={`prototype-menu-item ${variantId === 'v1.3' ? 'active' : ''}`}
                 onClick={() => { setVariant('v1.3'); setShowPrototypeMenu(false); }}
               >
-                <span>v1.3 - Preview (caption inline)</span>
+                <span>v1.3 - Preview only (menu option)</span>
                 {variantId === 'v1.3' && <span className="check">✓</span>}
               </div>
               <div 
