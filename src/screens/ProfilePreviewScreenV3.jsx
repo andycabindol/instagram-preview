@@ -73,7 +73,7 @@ function ProfilePreviewScreenV3({ images = [], profilePosts = [], onClose, onDon
         <button className="profile-preview-header-button" onClick={handleCancel}>
           <span>Cancel</span>
         </button>
-        <h2 className="profile-preview-header-title">Preview on profile</h2>
+        <h2 className="profile-preview-header-title">Preview</h2>
         <button className="profile-preview-header-button" onClick={handleDone}>
           <span>Done</span>
         </button>

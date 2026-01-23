@@ -94,6 +94,12 @@
   border: 2px solid #4a5df9;
 }
 
+/* v4: Apply same outline treatment as v1.1, v1.2, v1.3 (box-shadow instead of border) */
+.preview-screen.v4 .preview-grid-item.cover-preview {
+  box-shadow: 0 0 0 2px #4a5df9;
+  border: none;
+}
+
 .cover-preview-badge {
   position: absolute;
   top: 8px;

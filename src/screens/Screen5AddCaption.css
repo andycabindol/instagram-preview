@@ -31,9 +31,12 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .screen5-add-caption .nav-title {
@@ -58,9 +61,10 @@
 .screen5-add-caption.v1-2 .nav-title {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   top: 50%;
-  margin-top: 0;
+  margin: 0;
+  line-height: 1;
 }
 
 /* v1.2: Ensure back button and preview button align with title */
@@ -68,6 +72,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 28px;
+  height: 28px;
 }
 
 .screen5-add-caption .preview-profile-button-nav {
@@ -97,6 +103,30 @@
 /* v1.2: Preview button icon is black and aligned */
 .screen5-add-caption.v1-2 .preview-profile-button-nav.v1-2-nav-button svg rect {
   stroke: #0c1014;
+}
+
+/* v1.2: Text link styling for preview in nav bar (no container, no icon) */
+.screen5-add-caption.v1-2 .preview-profile-link-nav-v1-2 {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: normal;
+  color: #5a67ff;
+  letter-spacing: 0.13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.screen5-add-caption.v1-2 .preview-profile-link-nav-v1-2:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 /* Prod: Center nav-title within relative nav-bar */
@@ -407,6 +437,53 @@
 .screen5-add-caption .preview-profile-button-v5.v1-1-polished span {
   color: #0c1014;
   font-weight: 500;
+}
+
+/* v1.1: Text link styling for preview on profile (no container, no icon) */
+.screen5-add-caption.v1-1 .preview-profile-link-v1-1 {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: normal;
+  color: #5a67ff;
+  text-align: center;
+  letter-spacing: 0.13px;
+  display: block;
+  width: calc(100% - 24px);
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.screen5-add-caption.v1-1 .preview-profile-link-v1-1:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* v1.1: Share button with Instagram brand blue/purple */
+.screen5-add-caption.v1-1 .share-button.v1-1-brand-purple {
+  background-color: #5a67ff;
+}
+
+/* v1.2: Share button with Instagram brand blue/purple (same as v1.1) */
+.screen5-add-caption.v1-2 .share-button {
+  background-color: #5a67ff;
+}
+
+/* v1.3: Share button with Instagram brand blue/purple (same as v1.1 and v1.2) */
+.screen5-add-caption.v1-3 .share-button {
+  background-color: #5a67ff;
+}
+
+/* v2, v3, v4: Share button with Instagram brand blue/purple (same as v1.1, v1.2, v1.3) */
+.screen5-add-caption.v2 .share-button,
+.screen5-add-caption.v3 .share-button,
+.screen5-add-caption.v4 .share-button {
+  background-color: #5a67ff;
 }
 
 /* v1.3: Inline caption button styling */
