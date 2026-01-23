@@ -22,22 +22,33 @@ function CoverSelectorBottomSheet({ images, selectedCoverIndex, onSelectCover, o
           <span className="cover-selector-title">{isV2 ? 'Choose cover' : 'Select cover'}</span>
         </div>
         <div className="cover-selector-thumbnails">
-          {images.map((imgSrc, index) => (
-            <div
-              key={index}
-              className={`cover-thumbnail ${selectedCoverIndex === index ? 'selected' : ''}`}
-              onClick={() => onSelectCover(index)}
-            >
-              <img src={imgSrc} alt={`Cover ${index + 1}`} />
-              {selectedCoverIndex === index && !isV2OrV4 && (
-                <div className="cover-thumbnail-check">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M20 6L9 17l-5-5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              )}
-            </div>
-          ))}
+          {images.map((imgSrc, index) => {
+            const placeholderImage = 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop'
+            return (
+              <div
+                key={index}
+                className={`cover-thumbnail ${selectedCoverIndex === index ? 'selected' : ''}`}
+                onClick={() => onSelectCover(index)}
+              >
+                <img 
+                  src={imgSrc} 
+                  alt={`Cover ${index + 1}`}
+                  onError={(e) => {
+                    // Replace with placeholder image if it fails to load
+                    e.target.src = placeholderImage
+                    e.target.onerror = null // Prevent infinite loop
+                  }}
+                />
+                {selectedCoverIndex === index && !isV2OrV4 && (
+                  <div className="cover-thumbnail-check">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path d="M20 6L9 17l-5-5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </div>
         <button className="cover-selector-done-button" onClick={onDone}>
           <span>Done</span>

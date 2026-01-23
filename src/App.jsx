@@ -33,7 +33,9 @@ function App() {
   const [showProfilePreview, setShowProfilePreview] = useState(false)
   const [profilePreviewCoverImage, setProfilePreviewCoverImage] = useState(null)
   const [profileData, setProfileData] = useState(null)
-  const [profilePosts, setProfilePosts] = useState([
+  
+  // Default placeholder images
+  const defaultProfilePosts = [
     'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop',
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
     'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=400&fit=crop',
@@ -48,8 +50,10 @@ function App() {
     'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&h=400&fit=crop',
     'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop',
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
-  ])
-  
+  ]
+
+  const [profilePosts, setProfilePosts] = useState(defaultProfilePosts)
+
   // Load saved profile from localStorage on mount
   useEffect(() => {
     try {
@@ -62,6 +66,39 @@ function App() {
       console.error('Failed to load saved profile:', e)
     }
   }, [])
+
+  // Update profilePosts when profileData changes
+  useEffect(() => {
+    if (profileData) {
+      // If profile is private or has no posts, use placeholder images
+      if (profileData.isPrivate || !profileData.posts || profileData.posts.length === 0) {
+        setProfilePosts(defaultProfilePosts)
+      } else {
+        // Use real profile posts - extract thumbnailUrls and proxy Instagram CDN URLs
+        const posts = profileData.posts
+          .map(p => {
+            const url = p.thumbnailUrl || ''
+            // Don't proxy Unsplash URLs (mock data)
+            if (url.includes('unsplash.com')) {
+              return url
+            }
+            // Proxy Instagram CDN URLs
+            return proxyImageUrl(url)
+          })
+          .filter(Boolean)
+        
+        // Only update if we have valid posts
+        if (posts.length > 0) {
+          setProfilePosts(posts)
+        } else {
+          setProfilePosts(defaultProfilePosts)
+        }
+      }
+    } else {
+      // No profile data, use default placeholders
+      setProfilePosts(defaultProfilePosts)
+    }
+  }, [profileData])
 
   // Get default avatar (use loaded profile or fallback)
   const defaultAvatar = profileData?.avatarUrl 

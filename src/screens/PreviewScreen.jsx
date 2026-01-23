@@ -282,25 +282,33 @@ function PreviewScreen({ images, onCancel, onDone, isMultiSelect, profilePosts =
       {/* Profile Grid Preview */}
       <div className="preview-content" ref={previewContentRef}>
         <div className="preview-profile-grid">
-          {previewGrid.map((imgSrc, index) => (
-            <div
-              key={index}
-              className={`preview-grid-item ${index === 0 ? 'cover-preview' : ''}`}
-            >
-              <img 
-                ref={index === 0 && isV2 ? coverImageRef : null}
-                src={imgSrc} 
-                alt={`Preview ${index + 1}`}
-                style={index === 0 && isV2 ? {
-                  transform: `scale(${coverZoom}) translate(${coverPan.x}px, ${coverPan.y}px)`,
-                  transformOrigin: 'center center',
-                  transition: (isZooming || isPanning) ? 'none' : 'transform 0.1s ease-out'
-                } : index === 0 && isV4 ? {
-                  pointerEvents: 'none' // v4: Disable interaction - no cropping/adjustment allowed
-                } : {}}
-              />
-            </div>
-          ))}
+          {previewGrid.map((imgSrc, index) => {
+            const placeholderImage = 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop'
+            return (
+              <div
+                key={index}
+                className={`preview-grid-item ${index === 0 ? 'cover-preview' : ''}`}
+              >
+                <img 
+                  ref={index === 0 && isV2 ? coverImageRef : null}
+                  src={imgSrc} 
+                  alt={`Preview ${index + 1}`}
+                  onError={(e) => {
+                    // Replace with placeholder image if it fails to load
+                    e.target.src = placeholderImage
+                    e.target.onerror = null // Prevent infinite loop
+                  }}
+                  style={index === 0 && isV2 ? {
+                    transform: `scale(${coverZoom}) translate(${coverPan.x}px, ${coverPan.y}px)`,
+                    transformOrigin: 'center center',
+                    transition: (isZooming || isPanning) ? 'none' : 'transform 0.1s ease-out'
+                  } : index === 0 && isV4 ? {
+                    pointerEvents: 'none' // v4: Disable interaction - no cropping/adjustment allowed
+                  } : {}}
+                />
+              </div>
+            )
+          })}
         </div>
       </div>
 

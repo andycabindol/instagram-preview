@@ -310,9 +310,10 @@ function Screen6Profile({ onHomeClick, postImages: postImagesProp, profileData: 
                 src={img} 
                 alt={`Post ${index + 1}`}
                 onError={(e) => {
-                  // Hide image if it fails to load (blocked/close friends content)
-                  e.target.style.display = 'none';
-                  e.target.parentElement.style.backgroundColor = '#f7f9f9';
+                  // Replace with placeholder image if it fails to load
+                  const placeholderIndex = index % defaultPostImages.length
+                  e.target.src = defaultPostImages[placeholderIndex]
+                  e.target.onerror = null // Prevent infinite loop
                 }}
               />
             </div>

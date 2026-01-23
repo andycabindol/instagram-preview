@@ -82,55 +82,71 @@ function ProfilePreviewScreenV3({ images = [], profilePosts = [], onClose, onDon
       {/* Profile Grid Preview */}
       <div className="profile-preview-content">
         <div className="profile-preview-grid">
-          {previewGrid.map((imgSrc, index) => (
-            <div
-              key={index}
-              className={`profile-preview-grid-item ${index === 0 ? 'cover-preview' : ''}`}
-            >
-              {index === 0 && images.length > 1 ? (
-                <>
-                  <div 
-                    className="cover-preview-slides"
-                    ref={containerRef}
-                    onTouchStart={handleSwipeStart}
-                    onTouchMove={handleSwipeMove}
-                    onTouchEnd={handleSwipeEnd}
-                    style={{
-                      transform: `translateX(-${currentSlideIndex * 100}%)`,
-                      transition: 'transform 0.3s ease-out'
+          {previewGrid.map((imgSrc, index) => {
+            const placeholderImage = 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=400&h=400&fit=crop'
+            return (
+              <div
+                key={index}
+                className={`profile-preview-grid-item ${index === 0 ? 'cover-preview' : ''}`}
+              >
+                {index === 0 && images.length > 1 ? (
+                  <>
+                    <div 
+                      className="cover-preview-slides"
+                      ref={containerRef}
+                      onTouchStart={handleSwipeStart}
+                      onTouchMove={handleSwipeMove}
+                      onTouchEnd={handleSwipeEnd}
+                      style={{
+                        transform: `translateX(-${currentSlideIndex * 100}%)`,
+                        transition: 'transform 0.3s ease-out'
+                      }}
+                    >
+                      {images.map((imageSrc, imgIndex) => (
+                        <div key={imgIndex} className="cover-slide-item">
+                          <img 
+                            src={imageSrc} 
+                            alt={`Slide ${imgIndex + 1}`}
+                            onError={(e) => {
+                              // Replace with placeholder image if it fails to load
+                              e.target.src = placeholderImage
+                              e.target.onerror = null // Prevent infinite loop
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    {/* Slide Indicators */}
+                    <div className="cover-slide-indicators">
+                      {images.map((_, imgIndex) => (
+                        <div
+                          key={imgIndex}
+                          className={`cover-indicator ${imgIndex === currentSlideIndex ? 'active' : ''}`}
+                          onClick={() => {
+                            setCurrentSlideIndex(imgIndex)
+                            setCurrentCoverIndex(imgIndex)
+                          }}
+                          onTouchStart={(e) => e.stopPropagation()}
+                        />
+                      ))}
+                    </div>
+                  </>
+                ) : imgSrc ? (
+                  <img 
+                    src={imgSrc} 
+                    alt={index === 0 ? 'New post preview' : `Post ${index}`}
+                    onError={(e) => {
+                      // Replace with placeholder image if it fails to load
+                      e.target.src = placeholderImage
+                      e.target.onerror = null // Prevent infinite loop
                     }}
-                  >
-                    {images.map((imageSrc, imgIndex) => (
-                      <div key={imgIndex} className="cover-slide-item">
-                        <img src={imageSrc} alt={`Slide ${imgIndex + 1}`} />
-                      </div>
-                    ))}
-                  </div>
-                  {/* Slide Indicators */}
-                  <div className="cover-slide-indicators">
-                    {images.map((_, imgIndex) => (
-                      <div
-                        key={imgIndex}
-                        className={`cover-indicator ${imgIndex === currentSlideIndex ? 'active' : ''}`}
-                        onClick={() => {
-                          setCurrentSlideIndex(imgIndex)
-                          setCurrentCoverIndex(imgIndex)
-                        }}
-                        onTouchStart={(e) => e.stopPropagation()}
-                      />
-                    ))}
-                  </div>
-                </>
-              ) : imgSrc ? (
-                <img 
-                  src={imgSrc} 
-                  alt={index === 0 ? 'New post preview' : `Post ${index}`}
-                />
-              ) : (
-                <div className="profile-preview-placeholder"></div>
-              )}
-            </div>
-          ))}
+                  />
+                ) : (
+                  <div className="profile-preview-placeholder"></div>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>
