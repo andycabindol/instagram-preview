@@ -52,12 +52,22 @@
 /* v1.2: Nav bar needs space for preview button */
 .screen5-add-caption.v1-2 .nav-bar {
   justify-content: space-between;
+  align-items: center;
 }
 
 .screen5-add-caption.v1-2 .nav-title {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  top: 50%;
+  margin-top: 0;
+}
+
+/* v1.2: Ensure back button and preview button align with title */
+.screen5-add-caption.v1-2 .back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .screen5-add-caption .preview-profile-button-nav {
@@ -82,6 +92,11 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+}
+
+/* v1.2: Preview button icon is black and aligned */
+.screen5-add-caption.v1-2 .preview-profile-button-nav.v1-2-nav-button svg rect {
+  stroke: #0c1014;
 }
 
 /* Prod: Center nav-title within relative nav-bar */
@@ -304,6 +319,15 @@
   margin-bottom: 0;
 }
 
+/* v1.1: Reduce spacing between preview and share buttons */
+.screen5-add-caption.v1-1 .bottom-toolbar {
+  gap: 8px;
+}
+
+.screen5-add-caption.v1-1 .preview-profile-button-v5 {
+  margin-bottom: 0;
+}
+
 .screen5-add-caption .share-button {
   background-color: #8593ff;
   border: none;
@@ -370,26 +394,19 @@
   letter-spacing: 0.13px;
 }
 
-/* v1.1: Polished styling for bottom toolbar button */
+/* v1.1: Grey styling for bottom toolbar button (Instagram design system) */
 .screen5-add-caption .preview-profile-button-v5.v1-1-polished {
-  background-color: #f8f9fa;
-  border: 1.5px solid #4a5df9;
-  box-shadow: 0 1px 3px rgba(74, 93, 249, 0.15);
+  background-color: #f3f4f6;
+  border: none;
 }
 
 .screen5-add-caption .preview-profile-button-v5.v1-1-polished:hover:not(:disabled) {
-  background-color: #f0f2ff;
-  border-color: #6b7dfa;
-  box-shadow: 0 2px 6px rgba(74, 93, 249, 0.25);
+  background-color: #e5e7eb;
 }
 
 .screen5-add-caption .preview-profile-button-v5.v1-1-polished span {
-  color: #4a5df9;
-  font-weight: 600;
-}
-
-.screen5-add-caption .preview-profile-button-v5.v1-1-polished svg rect {
-  stroke: #4a5df9;
+  color: #0c1014;
+  font-weight: 500;
 }
 
 /* v1.3: Inline caption button styling */

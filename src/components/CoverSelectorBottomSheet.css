@@ -4,8 +4,8 @@
   left: 50%;
   transform: translateX(-50%);
   width: 375px;
-  background-color: #0c1014;
-  border-top: 1px solid #25292e;
+  background-color: #ffffff;
+  border-top: 1px solid #dbdfe4;
   border-radius: 16px 16px 0 0;
   z-index: 1000;
   transition: transform 0.3s ease;
@@ -48,7 +48,7 @@
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  color: #f7f9f9;
+  color: #0c1014;
 }
 
 .cover-selector-thumbnails {
@@ -63,7 +63,7 @@
 }
 
 .cover-selector-thumbnails::-webkit-scrollbar-track {
-  background: #212327;
+  background: #f7f9f9;
   border-radius: 2px;
 }
 

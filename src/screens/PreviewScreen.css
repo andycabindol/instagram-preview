@@ -1,5 +1,5 @@
 .preview-screen {
-  background-color: #0c1014;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   width: 375px;
@@ -17,8 +17,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  border-bottom: 1px solid #25292e;
-  background-color: #0c1014;
+  border-bottom: 1px solid #dbdfe4;
+  background-color: #ffffff;
   z-index: 100;
 }
 
@@ -43,7 +43,7 @@
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 18px;
-  color: #f7f9f9;
+  color: #0c1014;
   margin: 0;
 }
 
@@ -67,7 +67,7 @@
   aspect-ratio: 1;
   position: relative;
   overflow: hidden;
-  background-color: #212327;
+  background-color: #f7f9f9;
 }
 
 /* v2 Mobile Zoom - Ensure container clips properly */
