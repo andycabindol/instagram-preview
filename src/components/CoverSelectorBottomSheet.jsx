@@ -19,7 +19,7 @@ function CoverSelectorBottomSheet({ images, selectedCoverIndex, onSelectCover, o
       </div>
       <div className="cover-selector-content">
         <div className="cover-selector-header">
-          <span className="cover-selector-title">Select cover</span>
+          <span className="cover-selector-title">{isV2 ? 'Choose cover' : 'Select cover'}</span>
         </div>
         <div className="cover-selector-thumbnails">
           {images.map((imgSrc, index) => (
