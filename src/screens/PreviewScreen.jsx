@@ -6,6 +6,7 @@ import './PreviewScreen.css'
 function PreviewScreen({ images, onCancel, onDone, isMultiSelect, profilePosts = [] }) {
   const { isVariant } = useVariant()
   const isV2 = isVariant('v2')
+  const isV4 = isVariant('v4')
   const [tempCoverIndex, setTempCoverIndex] = useState(0)
   const [tempImages, setTempImages] = useState([...images])
   const [isSheetHidden, setIsSheetHidden] = useState(false)
@@ -268,13 +269,13 @@ function PreviewScreen({ images, onCancel, onDone, isMultiSelect, profilePosts =
   ]
 
   return (
-    <div className={`preview-screen ${isV2 ? 'v2' : ''}`}>
+    <div className={`preview-screen ${isV2 ? 'v2' : ''} ${isV4 ? 'v4' : ''}`}>
       {/* Header */}
       <div className="preview-header">
         <button className="preview-header-button" onClick={handleCancel}>
           <span>Cancel</span>
         </button>
-        <h2 className="preview-header-title">Preview</h2>
+        <h2 className="preview-header-title">{isV2 ? 'Adjust preview' : 'Preview'}</h2>
         <div style={{ width: '60px' }}></div> {/* Spacer for centering */}
       </div>
 

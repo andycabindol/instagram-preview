@@ -8,6 +8,7 @@ import './Screen4EditPost.css'
 function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview, profilePosts = [] }) {
   const { config, isVariant } = useVariant()
   const isV3 = isVariant('v3')
+  const isV2 = isVariant('v2')
   const isV1 = isVariant('v1')
   const isV1_1 = isVariant('v1.1')
   const isV1_2 = isVariant('v1.2')
@@ -118,7 +119,7 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview, profileP
                   <span>Edit</span>
                 </div>
               )}
-              {config.showCroppingTools && (
+              {config.showCroppingTools && !isV2 && (
                 <div className="toolbar-button">
                   <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
                     <rect x="3" y="3" width="18" height="18" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>
@@ -127,7 +128,7 @@ function Screen4EditPost({ onClose, onNext, images = [], onOpenPreview, profileP
                   <span>Crop</span>
                 </div>
               )}
-              {config.showCoverSelectionUI && (
+              {config.showCoverSelectionUI && !isV2 && (
                 <div className="toolbar-button">
                   <svg width="13.5" height="13.5" viewBox="0 0 24 24" fill="none">
                     <rect x="2" y="4" width="20" height="16" rx="2" stroke="#f7f9f9" strokeWidth="2" fill="none"/>

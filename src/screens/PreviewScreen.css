@@ -77,6 +77,13 @@
   }
 }
 
+/* v4 Mobile Zoom - Ensure container clips properly */
+@media screen and (max-width: 450px) {
+  .preview-screen.v4 .preview-grid-item.cover-preview {
+    overflow: hidden;
+  }
+}
+
 .preview-grid-item img {
   width: 100%;
   height: 100%;
@@ -122,6 +129,24 @@
   background-color: #f7f9f9;
 }
 
+/* v4 Light Mode Styles */
+.preview-screen.v4 {
+  background-color: #ffffff;
+}
+
+.preview-screen.v4 .preview-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dbdfe4;
+}
+
+.preview-screen.v4 .preview-header-title {
+  color: #0c1014;
+}
+
+.preview-screen.v4 .preview-grid-item {
+  background-color: #f7f9f9;
+}
+
 /* v2 Mobile Zoom Styles for Cover Preview */
 @media screen and (max-width: 450px) {
   .preview-screen.v2 .preview-grid-item.cover-preview {
@@ -131,6 +156,20 @@
   }
 
   .preview-screen.v2 .preview-grid-item.cover-preview img {
+    will-change: transform;
+    touch-action: none;
+  }
+}
+
+/* v4 Mobile Zoom Styles for Cover Preview */
+@media screen and (max-width: 450px) {
+  .preview-screen.v4 .preview-grid-item.cover-preview {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .preview-screen.v4 .preview-grid-item.cover-preview img {
     will-change: transform;
     touch-action: none;
   }
@@ -157,11 +196,19 @@
     padding-bottom: 4px;
   }
 
+  .cover-selector-bottom-sheet.v4 .cover-selector-content {
+    padding-bottom: 4px;
+  }
+
   .cover-selector-content {
     padding-top: 0px;
   }
 
   .preview-screen.v2 .preview-grid-item.cover-preview {
+    overflow: hidden;
+  }
+
+  .preview-screen.v4 .preview-grid-item.cover-preview {
     overflow: hidden;
   }
 }

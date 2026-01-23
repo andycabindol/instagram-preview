@@ -5,13 +5,15 @@ import './CoverSelectorBottomSheet.css'
 function CoverSelectorBottomSheet({ images, selectedCoverIndex, onSelectCover, onDone, isHidden, onToggleHidden }) {
   const { isVariant } = useVariant()
   const isV2 = isVariant('v2')
+  const isV4 = isVariant('v4')
+  const isV2OrV4 = isV2 || isV4
 
   if (!images || images.length <= 1) {
     return null // Only show if multiple images
   }
 
   return (
-    <div className={`cover-selector-bottom-sheet ${isHidden ? 'hidden' : ''} ${isV2 ? 'v2' : ''}`}>
+    <div className={`cover-selector-bottom-sheet ${isHidden ? 'hidden' : ''} ${isV2 ? 'v2' : ''} ${isV4 ? 'v4' : ''} ${isV2OrV4 ? 'v2-v4' : ''}`}>
       <div className="cover-selector-grabber" onClick={onToggleHidden}>
         <div className="grabber-handle"></div>
       </div>
@@ -27,7 +29,7 @@ function CoverSelectorBottomSheet({ images, selectedCoverIndex, onSelectCover, o
               onClick={() => onSelectCover(index)}
             >
               <img src={imgSrc} alt={`Cover ${index + 1}`} />
-              {selectedCoverIndex === index && (
+              {selectedCoverIndex === index && !isV2OrV4 && (
                 <div className="cover-thumbnail-check">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                     <path d="M20 6L9 17l-5-5" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
