@@ -56,6 +56,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
+/* v2: Cover selector is inline, less bottom padding; reduced top padding for images higher */
+.preview-screen.v2 .preview-content {
+  padding-top: 56px;
+  padding-bottom: 40px;
+}
+
 .preview-profile-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -127,6 +133,7 @@
 
 .preview-screen.v2 .preview-grid-item {
   background-color: #f7f9f9;
+  aspect-ratio: 4/5;
 }
 
 /* v4 Light Mode Styles */

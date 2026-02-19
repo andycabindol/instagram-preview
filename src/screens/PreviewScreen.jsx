@@ -263,10 +263,12 @@ function PreviewScreen({ images, onCancel, onDone, isMultiSelect, profilePosts =
   }
 
   // Insert the new post (with cover) at position 0, followed by all existing profile posts
-  const previewGrid = [
+  const fullPreviewGrid = [
     tempImages[0], // Cover image
     ...profilePosts // All existing profile posts
   ]
+  // v2: Only 9 images in 3x3 grid
+  const previewGrid = isV2 ? fullPreviewGrid.slice(0, 9) : fullPreviewGrid
 
   return (
     <div className={`preview-screen ${isV2 ? 'v2' : ''} ${isV4 ? 'v4' : ''}`}>
@@ -310,10 +312,21 @@ function PreviewScreen({ images, onCancel, onDone, isMultiSelect, profilePosts =
             )
           })}
         </div>
+
+        {/* v2: Inline Choose cover (same layer, below grid) */}
+        {isV2 && isMultiSelect && images.length > 1 && (
+          <CoverSelectorBottomSheet
+            images={images}
+            selectedCoverIndex={tempCoverIndex}
+            onSelectCover={handleCoverSelect}
+            onDone={handleDone}
+            inline
+          />
+        )}
       </div>
 
-      {/* Bottom Sheet Cover Selector (only in multi-select) */}
-      {isMultiSelect && images.length > 1 && (
+      {/* Bottom Sheet Cover Selector (only in multi-select, non-v2) */}
+      {!isV2 && isMultiSelect && images.length > 1 && (
         <CoverSelectorBottomSheet
           images={images}
           selectedCoverIndex={tempCoverIndex}

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useVariant } from '../variants/VariantProvider'
 import './CoverSelectorBottomSheet.css'
 
-function CoverSelectorBottomSheet({ images, selectedCoverIndex, onSelectCover, onDone, isHidden, onToggleHidden }) {
+function CoverSelectorBottomSheet({ images, selectedCoverIndex, onSelectCover, onDone, isHidden, onToggleHidden, inline }) {
   const { isVariant } = useVariant()
   const isV2 = isVariant('v2')
   const isV4 = isVariant('v4')
@@ -13,13 +13,18 @@ function CoverSelectorBottomSheet({ images, selectedCoverIndex, onSelectCover, o
   }
 
   return (
-    <div className={`cover-selector-bottom-sheet ${isHidden ? 'hidden' : ''} ${isV2 ? 'v2' : ''} ${isV4 ? 'v4' : ''} ${isV2OrV4 ? 'v2-v4' : ''}`}>
-      <div className="cover-selector-grabber" onClick={onToggleHidden}>
-        <div className="grabber-handle"></div>
-      </div>
+    <div className={`cover-selector-bottom-sheet ${inline ? 'inline' : ''} ${!inline && isHidden ? 'hidden' : ''} ${isV2 ? 'v2' : ''} ${isV4 ? 'v4' : ''} ${isV2OrV4 ? 'v2-v4' : ''}`}>
+      {!inline && (
+        <div className="cover-selector-grabber" onClick={onToggleHidden}>
+          <div className="grabber-handle"></div>
+        </div>
+      )}
       <div className="cover-selector-content">
         <div className="cover-selector-header">
           <span className="cover-selector-title">{isV2 ? 'Choose cover' : 'Select cover'}</span>
+          {isV2 && (
+            <p className="cover-selector-subtitle">Pinch on the cover image to crop - this only affects how it appears on your profile</p>
+          )}
         </div>
         <div className="cover-selector-thumbnails">
           {images.map((imgSrc, index) => {

@@ -11,6 +11,19 @@
   transition: transform 0.3s ease;
 }
 
+/* v2 inline: same layer as content, below preview grid */
+.cover-selector-bottom-sheet.inline {
+  position: static;
+  transform: none;
+  width: 100%;
+  max-width: 375px;
+  margin: 0 auto;
+  margin-top: 12px;
+  border-top: none !important;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .cover-selector-bottom-sheet.hidden {
   transform: translateX(-50%) translateY(calc(100% - 24px));
 }
@@ -40,6 +53,12 @@
   padding-bottom: 40px;
 }
 
+/* v2 inline: Remove side padding to align with preview grid */
+.cover-selector-bottom-sheet.v2.inline .cover-selector-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .cover-selector-header {
   margin-bottom: 12px;
 }
@@ -49,6 +68,15 @@
   font-weight: 600;
   font-size: 14px;
   color: #0c1014;
+}
+
+.cover-selector-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #6b7280;
+  margin: 4px 0 0 0;
+  line-height: 1.4;
 }
 
 .cover-selector-thumbnails {
@@ -155,6 +183,11 @@
 .cover-selector-bottom-sheet.v2 {
   background-color: #ffffff;
   border-top: 1px solid #dbdfe4;
+}
+
+/* v2 inline: Remove top border */
+.cover-selector-bottom-sheet.v2.inline {
+  border-top: none;
 }
 
 .cover-selector-bottom-sheet.v2 .cover-selector-title {
