@@ -23,22 +23,20 @@
 }
 
 .profile-preview-header-spacer {
-  width: 60px; /* Balance the button on the right */
+  width: 28px; /* Balance the back button on the left */
 }
 
-.profile-preview-header-button {
+.profile-preview-header-back-button {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  margin-left: 0;
-}
-
-.profile-preview-header-button span {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: #4a5df9;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .profile-preview-header-title {
@@ -50,6 +48,13 @@
   font-size: 18px;
   color: #0c1014;
   margin: 0;
+}
+
+/* v1.1, v1.2, v1.3: Smaller font size to match other page headers */
+.profile-preview-screen.v1-1 .profile-preview-header-title,
+.profile-preview-screen.v1-2 .profile-preview-header-title,
+.profile-preview-screen.v1-3 .profile-preview-header-title {
+  font-size: 15px;
 }
 
 .profile-preview-content {
@@ -88,7 +93,8 @@
 }
 
 .profile-preview-grid-item.cover-preview {
-  box-shadow: 0 0 0 2px #6f7680;
+  box-shadow: 0 0 0 2px #4a5df9;
+  border: none;
 }
 
 /* Mobile responsive */

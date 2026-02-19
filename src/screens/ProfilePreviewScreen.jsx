@@ -22,14 +22,16 @@ function ProfilePreviewScreen({ coverImage, profilePosts = [], onClose }) {
   ]
 
   return (
-    <div className="profile-preview-screen">
+    <div className={`profile-preview-screen ${isV1_1 ? 'v1-1' : ''} ${isV1_2 ? 'v1-2' : ''} ${isV1_3 ? 'v1-3' : ''}`}>
       {/* Header */}
       <div className="profile-preview-header">
-        <div className="profile-preview-header-spacer"></div>
-        <h2 className="profile-preview-header-title">Preview on profile</h2>
-        <button className="profile-preview-header-button" onClick={onClose}>
-          <span>Done</span>
+        <button className="profile-preview-header-back-button" onClick={onClose}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18l-6-6 6-6" stroke="#0c1014" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </button>
+        <h2 className="profile-preview-header-title">Preview on profile</h2>
+        <div className="profile-preview-header-spacer"></div>
       </div>
 
       {/* Profile Grid Preview */}
